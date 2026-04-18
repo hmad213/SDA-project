@@ -4,14 +4,14 @@ const {
   insertCustomer,
   updateCustomer,
   getCustomer,
-  deleteCustomer
+  deleteCustomer,
 } = require("./db/customer_queries");
 
 const {
   insertAdmin,
   updateAdmin,
   getAdmin,
-  deleteAdmin
+  deleteAdmin,
 } = require("./db/admin_queries");
 
 const app = express();
@@ -33,7 +33,7 @@ app.get("/", async (req, res) => {
     await insertAdmin({
       admin_name: "Faran",
       username: "faran_test",
-      password: "pass"
+      password: "pass",
     });
     results.push("Admin inserted");
 
@@ -54,7 +54,6 @@ app.get("/", async (req, res) => {
     results.push("Customer deleted");
 
     res.send(results.join(" | "));
-    
   } catch (err) {
     console.error(err);
     res.send(err.message);
