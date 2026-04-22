@@ -6,10 +6,9 @@ async function getAllCategories() {
 }
 
 async function insertCategory({ category_name }) {
-  await pool.query(
-    "INSERT INTO Product_Category(category_name) VALUES ($1)",
-    [category_name],
-  );
+  await pool.query("INSERT INTO Product_Category(category_name) VALUES ($1)", [
+    category_name,
+  ]);
 }
 
 async function updateCategory(id, fields) {
