@@ -15,28 +15,28 @@ const routes = [
   {
     path: "/retailer",
     element: <Retailer />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
     path: "/admin",
     element: <Admin />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
     path: "/cart",
     element: <Cart />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
     path: "/search",
     element: <Search />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
   },
   {
     path: "/catalog",
     element: <Catalog />,
-    errorElement: <ErrorPage />
-  }
+    errorElement: <ErrorPage />,
+  },
 ];
 
 export default routes;

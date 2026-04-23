@@ -20,6 +20,7 @@ app.listen(PORT, (error) => {
   if (error) {
     throw error;
   }
-
-  console.log("Listening on Port " + 3000 + "!");
+  console.log(
+    `Listening on Port ${PORT}! Navigate to http://localhost:${PORT} to run tests.`,
+  );
 });
