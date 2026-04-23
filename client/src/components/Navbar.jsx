@@ -1,35 +1,35 @@
 import React from "react";
-import "../styles/Navbar.css";
+import styles from "../styles/Navbar.module.css";
 import SearchIcon from "../assets/search.svg";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="navbar">
-      <button className="menu-btn" aria-label="Toggle Sidebar">
-        <div className="menu-line"></div>
-        <div className="menu-line"></div>
-        <div className="menu-line"></div>
+    <nav className={styles.navbar}>
+      <button className={styles["menu-btn"]} aria-label="Toggle Sidebar">
+        <div className={styles["menu-line"]}></div>
+        <div className={styles["menu-line"]}></div>
+        <div className={styles["menu-line"]}></div>
       </button>
 
-      <Link to="/" className="logo">
+      <Link to="/" className={styles.logo}>
         Hammad Mart
       </Link>
 
       {/*SearchBar*/}
-      <div className="search-container">
-        <div className="search-box">
-          <input type="text" placeholder="Search" className="search-input" />
-          <div className="divider"></div>
-          <button className="search-icon-btn">
-            <img src={SearchIcon} alt="Search" className="search-svg" />
+      <div className={styles["search-container"]}>
+        <div className={styles["search-box"]}>
+          <input type="text" placeholder="Search" className={styles["search-input"]} />
+          <div className={styles.divider}></div>
+          <button className={styles["search-icon-btn"]}>
+            <img src={SearchIcon} alt="Search" className={styles["search-svg"]} />
           </button>
         </div>
       </div>
 
       {/*buttons*/}
-      <div className="action-buttons">
-        <button className="nav-btn cart-btn">
+      <div className={styles["action-buttons"]}>
+        <button className={`${styles["nav-btn"]} ${styles["cart-btn"]}`}>
           Cart
           {/*icon cart*/}
           <svg
@@ -49,7 +49,7 @@ export default function Navbar() {
           </svg>
         </button>
 
-        <button className="nav-btn login-btn">Login/Sign-up</button>
+        <button className={`${styles["nav-btn"]} ${styles["login-btn"]}`}>Login/Sign-up</button>
       </div>
     </nav>
   );
