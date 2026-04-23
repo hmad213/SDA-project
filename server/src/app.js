@@ -1,20 +1,22 @@
 const express = require("express");
+const cors = require("cors");
+
 const { indexRouter } = require("./routes/indexRouter");
 const { productRouter } = require("./routes/productRouter");
-const { adminRouter } = require("./routes/adminRouter");
 const { orderRouter } = require("./routes/orderRouter");
-const { customerRouter } = require("./routes/customerRouter");
-const { retailerRouter } = require("./routes/retailerRouter");
+const { categoryRouter } = require("./routes/categoryRouter");
+const { userRouter } = require("./routes/userRouter");
 
 const app = express();
 const PORT = 3000;
 
+app.use(cors({ origin: process.env.FRONTEND_URL || "http://localhost:3000" }));
+
 app.use("/", indexRouter);
 app.use("/product", productRouter);
-app.use("/admin", adminRouter);
 app.use("/order", orderRouter);
-app.use("/customer", customerRouter);
-app.use("/retailer", retailerRouter);
+app.use("/category", categoryRouter);
+app.use("/user", userRouter);
 
 app.listen(PORT, (error) => {
   if (error) {
