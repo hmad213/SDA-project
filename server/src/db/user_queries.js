@@ -1,20 +1,20 @@
 const pool = require("./pool");
 
-async function getuser(index) {
+async function getUser(index) {
   const { rows } = await pool.query("SELECT * FROM Users WHERE User_id = $1", [
     index,
   ]);
   console.log(rows);
 }
 
-async function getuserPassword(username) {
+async function getUserByUsername(username) {
   const { rows } = await pool.query("SELECT * FROM Users WHERE username = $1", [
     username,
   ]);
   console.log(rows);
 }
 
-async function insertuser({
+async function insertUser({
   name,
   city,
   address,
@@ -31,7 +31,7 @@ async function insertuser({
 
 // Here fields is a javascript object with keys being the fields you want to change and values their new values
 // This requires heavy string manipulation.
-async function updateuser(id, fields) {
+async function updateUser(id, fields) {
   const keys = Object.keys(fields);
   if (keys.length === 0) return;
 
@@ -51,7 +51,7 @@ async function updateuser(id, fields) {
 }
 
 // username or id
-async function deleteuser(username) {
+async function deleteUser(username) {
   const query = `
   DELETE FROM Users
   WHERE username = $1
@@ -60,9 +60,9 @@ async function deleteuser(username) {
 }
 
 module.exports = {
-  getuser,
-  getuserPassword,
-  insertuser,
-  updateuser,
-  deleteuser,
+  getUser,
+  getUserByUsername,
+  insertUser,
+  updateUser,
+  deleteUser,
 };
