@@ -6,6 +6,7 @@ import Home from "./pages/home";
 import Retailer from "./pages/Retailer";
 import Search from "./pages/Search";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup"
 
 const routes = [
   {
@@ -42,7 +43,12 @@ const routes = [
     path: "/Login",
     element: <Login />,
     errorElement: <ErrorPage />,
-  }
+  },
+  {
+    path: "/Signup",
+    element: <Signup />,
+    errorElement: <ErrorPage />,
+  },
 ];
 
 export default routes;
