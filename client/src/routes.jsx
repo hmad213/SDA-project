@@ -5,6 +5,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/home";
 import Retailer from "./pages/Retailer";
 import Search from "./pages/Search";
+import Login from "./pages/Login";
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     element: <Catalog />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/Login",
+    element: <Login />,
+    errorElement: <ErrorPage />,
+  }
 ];
 
 export default routes;
