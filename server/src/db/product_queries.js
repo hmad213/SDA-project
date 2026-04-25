@@ -5,14 +5,16 @@ const pool = require("./pool");
 
 async function getProducts({ limit, offset }) {
   let query = "SELECT * FROM Products";
+  let count = 1;
   let arr = [];
   if (limit) {
-    query.concat(" LIMIT $1");
+    query = query.concat(` LIMIT $${count}`);
     arr.push(limit);
+    count++;
   }
 
   if (offset) {
-    query.concat(" OFFSET $2");
+    query = query.concat(` OFFSET $${count}`);
     arr.push(offset);
   }
 
@@ -45,19 +47,40 @@ async function insertProduct({
 }
 
 //ILIKE is case insensitive
-async function searchProductByQuery(query) {
-  const { rows } = await pool.query(
-    "SELECT * FROM Products WHERE product_name ILIKE $1 OR description ILIKE $1",
-    [`%${query}%`],
-  );
-  return rows;
-}
+async function searchProduct({ search, category, limit, offset }) {
+  let query = "SELECT * FROM Products";
+  let inputArr = [];
+  let count = 1;
+  if (category && search) {
+    query = query.concat(
+      ` WHERE (product_name ILIKE $${count} OR description ILIKE $${count}) AND category_id = $${count + 1}`,
+    );
+    inputArr.push(`%${search}%`, category);
+    count += 2;
+  } else if (category) {
+    query = query.concat(` WHERE category_id = $${count}`);
+    inputArr.push(category);
+    count++;
+  } else if (search) {
+    query = query.concat(
+      ` WHERE product_name ILIKE $${count} OR description ILIKE $${count}`,
+    );
+    inputArr.push(`%${search}%`);
+    count++;
+  }
 
-async function searchProductByCategory(category) {
-  const { rows } = await pool.query(
-    "SELECT * FROM Products WHERE category_id = $1",
-    [category],
-  );
+  if (limit) {
+    query = query.concat(` LIMIT $${count}`);
+    inputArr.push(limit);
+    count++;
+  }
+
+  if (offset) {
+    query = query.concat(` OFFSET $${count}`);
+    inputArr.push(offset);
+  }
+
+  const { rows } = await pool.query(query, inputArr);
   return rows;
 }
 
@@ -77,9 +100,9 @@ async function updateProduct(id, fields) {
   return rows[0];
 }
 
-async function deleteProduct(name) {
-  const query = `DELETE FROM Products WHERE product_name = $1`;
-  const { rowCount } = await pool.query(query, [name]);
+async function deleteProduct(index) {
+  const query = `DELETE FROM Products WHERE product_id = $1`;
+  const { rowCount } = await pool.query(query, [index]);
   return rowCount > 0;
 }
 
@@ -88,7 +111,6 @@ module.exports = {
   insertProduct,
   getProduct,
   updateProduct,
-  searchProductByCategory,
-  searchProductByQuery,
+  searchProduct,
   deleteProduct,
 };
