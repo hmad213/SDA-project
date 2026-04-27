@@ -5,6 +5,8 @@ import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import Retailer from "./pages/Retailer";
 import Search from "./pages/Search";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup"
 
 const routes = [
   {
@@ -35,6 +37,16 @@ const routes = [
   {
     path: "/catalog",
     element: <Catalog />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/Login",
+    element: <Login />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/Signup",
+    element: <Signup />,
     errorElement: <ErrorPage />,
   },
 ];

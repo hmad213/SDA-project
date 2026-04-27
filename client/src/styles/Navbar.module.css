@@ -95,7 +95,10 @@
   align-items: center;
 }
 
-.nav-btn {
+.nav-btn{
+  box-sizing: border-box;
+  height: 40px;
+  display: inline-flex;
   background-color: transparent;
   border: 1px solid rgba(0, 229, 255, 0.8);
   border-radius: 25px;
@@ -104,15 +107,15 @@
   font-weight: bold;
   padding: 10px 20px;
   cursor: pointer;
-  display: flex;
   align-items: center;
   box-shadow:
     0 0 10px rgba(0, 229, 255, 0.3),
     inset 0 0 5px rgba(0, 229, 255, 0.2);
   transition: all 0.2s ease-in-out;
+  text-decoration: none;
 }
 
-.nav-btn:hover {
+.nav-btn:hover, .nav-btn:active, .nav-btn:visited {
   background-color: rgba(0, 229, 255, 0.1);
   box-shadow:
     0 0 15px rgba(0, 229, 255, 0.5),
