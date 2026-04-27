@@ -19,10 +19,18 @@ export default function Navbar() {
       {/*SearchBar*/}
       <div className={styles["search-container"]}>
         <div className={styles["search-box"]}>
-          <input type="text" placeholder="Search" className={styles["search-input"]} />
+          <input
+            type="text"
+            placeholder="Search"
+            className={styles["search-input"]}
+          />
           <div className={styles.divider}></div>
           <button className={styles["search-icon-btn"]}>
-            <img src={SearchIcon} alt="Search" className={styles["search-svg"]} />
+            <img
+              src={SearchIcon}
+              alt="Search"
+              className={styles["search-svg"]}
+            />
           </button>
         </div>
       </div>
