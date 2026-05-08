@@ -27,13 +27,21 @@ const login = async (req, res) => {
     expiresIn: "7d",
   });
 
-  res.json({ accessToken, refreshToken });
+  res.json({
+    user: {
+      id: user.id,
+      username: user.username,
+      role: role.role_name,
+    },
+    accessToken,
+    refreshToken,
+  });
 };
 
 const refresh = async (req, res) => {
   const { refreshToken } = req.body;
   if (!refreshToken) {
-    res.status(401).json({ error: "No refresh token" });
+    return res.status(401).json({ error: "No refresh token" });
   }
 
   try {
@@ -65,13 +73,13 @@ const signup = async (req, res) => {
 
   for (const field of fields) {
     if (!user[field]) {
-      res.status(400).json({ error: `${field} is required!` });
+      return res.status(400).json({ error: `${field} is required!` });
     }
   }
 
   let result = await userQueries.getUserByUsername(user.username);
   if (result) {
-    res.status(409).json({ error: "Username already in use!" });
+    return res.status(409).json({ error: "Username already in use!" });
   }
 
   const hashedPassword = await bcrypt.hash(user.password, 10);
@@ -98,7 +106,13 @@ const signup = async (req, res) => {
       expiresIn: "7d",
     });
 
-    res.status(201).json({ accessToken, refreshToken });
+    res
+      .status(201)
+      .json({
+        user: { id: result.id, username: result.username, role: roleName },
+        accessToken,
+        refreshToken,
+      });
   } catch {
     res.status(400).json({ error: "Something went wrong!" });
   }
