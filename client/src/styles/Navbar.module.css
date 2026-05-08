@@ -80,13 +80,15 @@
   align-items: center;
 }
 
-.nav-btn {
+.nav-btn{
+  box-sizing: border-box;
+  height: 40px;
+  display: inline-flex;
   background-color: transparent;
   color: #ffffff;
   font-size: 15px;
   padding: 10px 20px;
   cursor: pointer;
-  display: flex;
   align-items: center;
   transition: all 0.2s ease-in-out;
   border: 1px solid transparent;
