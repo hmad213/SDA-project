@@ -15,7 +15,7 @@ userRouter.get(
   "/",
   authenticate,
   authorizeMiddleware.authorizeRole("admin"),
-  userController.getUsers(),
+  userController.getUsers,
 );
 
 userRouter.put(

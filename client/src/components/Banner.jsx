@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import style from "../styles/Banner.module.css";
 
 import bannerImg1 from "../assets/bannerImg1.png";
-import bannerImg2 from "../assets/bannerImg2.png";
 import bannerImg3 from "../assets/bannerImg3.png";
 
-const images = [bannerImg1, bannerImg2, bannerImg3];
+const images = [bannerImg1, bannerImg3];
 
 export default function Banner() {
   const [currentIndex, setCurrentIndex] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 
