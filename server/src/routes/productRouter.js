@@ -4,9 +4,9 @@ const productController = require("../controllers/productController");
 const { authenticate } = require("../middleware/authMiddleware");
 const authorizeMiddleware = require("../middleware/authorize");
 
-productRouter.get("/:index", productController.getProductIndex);
-
+productRouter.get("/search", productController.getProductSearch); // ← moved up
 productRouter.get("/", productController.getProduct);
+productRouter.get("/:index", productController.getProductIndex);
 
 productRouter.post(
   "/",
@@ -28,8 +28,6 @@ productRouter.delete(
   authorizeMiddleware.authorizeRetailer("admin"),
   productController.deleteProduct,
 );
-
-productRouter.get("/search", productController.getProductSearch);
 
 module.exports = {
   productRouter,

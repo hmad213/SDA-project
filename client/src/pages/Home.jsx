@@ -57,47 +57,6 @@ export default function Home() {
       retailer_id: 2,
       image_url: "https://placehold.co/300x300?text=Yoga+Mat",
     },
-    {
-      id: 5,
-      product_name: "Stainless Steel Water Bottle",
-      price: 24.99,
-      description: "Insulated 32oz water bottle, keeps drinks cold for 24hrs.",
-      rating: 4.8,
-      category_id: 3,
-      retailer_id: 3,
-      image_url: "https://placehold.co/300x300?text=Water+Bottle",
-    },
-    {
-      id: 6,
-      product_name: "Desk Lamp",
-      price: 44.99,
-      description:
-        "LED desk lamp with adjustable brightness and USB charging port.",
-      rating: 4.3,
-      category_id: 3,
-      retailer_id: 3,
-      image_url: "https://placehold.co/300x300?text=Desk+Lamp",
-    },
-    {
-      id: 7,
-      product_name: "Backpack",
-      price: 59.99,
-      description: "Waterproof 30L backpack with laptop compartment.",
-      rating: 4.6,
-      category_id: 4,
-      retailer_id: 1,
-      image_url: "https://placehold.co/300x300?text=Backpack",
-    },
-    {
-      id: 8,
-      product_name: "Sunglasses",
-      price: 19.99,
-      description: "UV400 polarized sunglasses with lightweight frame.",
-      rating: 3.9,
-      category_id: 4,
-      retailer_id: 2,
-      image_url: "https://placehold.co/300x300?text=Sunglasses",
-    },
   ];
 
   let loading = false;
@@ -121,11 +80,9 @@ export default function Home() {
               {loading ? (
                 <div>Loading...</div>
               ) : (
-                <div className={styles["items"]}>
-                  {products.map((product) => {
-                    return <Products product={product} />;
-                  })}
-                </div>
+                products.map((product) => {
+                  return <Products product={product} />;
+                })
               )}
             </div>
           </div>

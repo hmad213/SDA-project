@@ -169,26 +169,27 @@ const deleteProduct = async (req, res) => {
 };
 
 const getProductSearch = async (req, res) => {
-  const { limit, offset } = req.query;
+  const { limit, offset, search, category } = req.query;
 
-  const fields = ["limit", "offset", "category", "search"];
-
-  if (isNaN(limit) || isNaN(offset)) {
-    return res.status(400).json({ error: "Limit and Offset must be a number" });
+  if (limit && isNaN(Number(limit))) {
+    return res.status(400).json({ error: "Limit must be a number" });
+  }
+  if (offset && isNaN(Number(offset))) {
+    return res.status(400).json({ error: "Offset must be a number" });
   }
 
-  let inputObj = {};
-  for (let field of fields) {
-    if (req.query[field]) {
-      inputObj[field] = req.query[field];
-    }
-  }
+  const inputObj = {};
+  if (search) inputObj.search = search;
+  if (category) inputObj.category = Number(category); // ← parse to number
+  if (limit) inputObj.limit = Number(limit); // ← parse to number
+  if (offset !== undefined) inputObj.offset = Number(offset); // ← don't skip 0
 
   try {
     const result = await productQueries.searchProduct(inputObj);
+    console.log(result);
     res.status(200).json({ result });
   } catch (error) {
-    console.error(error);
+    console.error("DB error:", error.message);
     res
       .status(500)
       .json({ error: "Failed to fetch products on search request" });

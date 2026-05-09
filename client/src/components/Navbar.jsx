@@ -2,13 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/Navbar.module.css";
 import SearchIcon from "../assets/search.svg";
 import cartIcon from "../assets/cart.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Navbar() {
   const { logout, user } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [query, setQuery] = useState("");
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -20,22 +22,30 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!query.trim()) return;
+    navigate(`/catalog?search=${encodeURIComponent(query.trim())}`);
+  };
+
   return (
     <nav className={styles.navbar}>
       <Link to="/" className={styles.logo}>
-        Hammad Mart
+        HammadMart
       </Link>
 
       {/*SearchBar*/}
-      <div className={styles["search-container"]}>
+      <form className={styles["search-container"]} onSubmit={handleSearch}>
         <div className={styles["search-box"]}>
           <input
             type="text"
             placeholder="Search"
             className={styles["search-input"]}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
           <div className={styles.divider}></div>
-          <button className={styles["search-icon-btn"]}>
+          <button type="submit" className={styles["search-icon-btn"]}>
             <img
               src={SearchIcon}
               alt="Search"
@@ -43,7 +53,7 @@ export default function Navbar() {
             />
           </button>
         </div>
-      </div>
+      </form>
 
       {/*buttons*/}
       <div className={styles["action-buttons"]}>

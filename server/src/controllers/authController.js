@@ -106,13 +106,11 @@ const signup = async (req, res) => {
       expiresIn: "7d",
     });
 
-    res
-      .status(201)
-      .json({
-        user: { id: result.id, username: result.username, role: roleName },
-        accessToken,
-        refreshToken,
-      });
+    res.status(201).json({
+      user: { id: result.id, username: result.username, role: roleName },
+      accessToken,
+      refreshToken,
+    });
   } catch {
     res.status(400).json({ error: "Something went wrong!" });
   }

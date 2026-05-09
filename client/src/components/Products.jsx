@@ -33,21 +33,19 @@ export default function Product({ product }) {
             ))}
           </span>
         </div>
-        <div className={styles.buttons}>
-          {foundIndex === -1 ? (
-            <button onClick={addProduct} className={styles.addButton}>
-              Add
-            </button>
-          ) : (
-            <>
-              <div className={styles.buttons}>
-                <button onClick={addProduct}>+</button>
-                <input type="text" value={cart[foundIndex].quantity} disabled />
-                <button onClick={removeProduct}>-</button>
-              </div>
-            </>
-          )}
-        </div>
+        {foundIndex === -1 ? (
+          <button onClick={addProduct} className={styles.addButton}>
+            Add
+          </button>
+        ) : (
+          <>
+            <div className={styles.buttons}>
+              <button onClick={addProduct}>+</button>
+              <input type="text" value={cart[foundIndex].quantity} disabled />
+              <button onClick={removeProduct}>-</button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

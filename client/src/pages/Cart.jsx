@@ -1,21 +1,16 @@
-import React, { useState } from "react";
-import Navbar from "../components/navbar";
+import React, { useContext } from "react";
+import Navbar from "../components/Navbar";
 import styles from "../styles/Cart.module.css";
-
-const dummyItems = [
-  { id: 1, name: "Product 1", price: 99.99, quantity: 1 },
-  { id: 2, name: "Product 2", price: 150.0, quantity: 1 },
-  { id: 3, name: "Product 3", price: 25.0, quantity: 2 },
-];
+import { CartContext } from "../contexts/CartContext";
 
 export default function Cart() {
-  const [items, setItems] = useState(dummyItems);
-  const subtotal = items.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+  const { cart, removeAllFromCart } = useContext(CartContext);
+  const subtotal = cart.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
     0,
   );
-  const removeItem = (id) => {
-    setItems(items.filter((item) => item.id !== id));
+  const removeItem = (item) => {
+    removeAllFromCart(item);
   };
 
   return (
@@ -28,15 +23,20 @@ export default function Cart() {
         </div>
 
         <div className={styles.gridContainer}>
-          {items.length > 0 ? (
-            items.map((item) => (
-              <div key={item.id} className={styles.card}>
-                <div className={styles.imagePlaceholder}>
-                  <span className={styles.imageText}>Image Placeholder</span>
-                </div>
+          {cart.length > 0 ? (
+            cart.map((item) => (
+              <div key={item.product.id} className={styles.card}>
+                <img
+                  className={styles.imagePlaceholder}
+                  src={item.product.image_url}
+                />
                 <div className={styles.cardDetails}>
-                  <h3 className={styles.itemName}>{item.name}</h3>
-                  <p className={styles.itemPrice}>${item.price.toFixed(2)}</p>
+                  <h3 className={styles.itemName}>
+                    {item.product.product_name}
+                  </h3>
+                  <p className={styles.itemPrice}>
+                    ${item.product.price.toFixed(2)}
+                  </p>
 
                   <div className={styles.cardActions}>
                     <span className={styles.quantity}>
@@ -44,7 +44,7 @@ export default function Cart() {
                     </span>
                     <button
                       className={styles.removeBtn}
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item)}
                     >
                       Remove
                     </button>
@@ -58,7 +58,7 @@ export default function Cart() {
         </div>
 
         <hr className={styles.seperatorLine} />
-        {items.length > 0 && (
+        {cart.length > 0 && (
           <div className={styles.summaryContainer}>
             <div className={styles.summaryBox}>
               <h2>Order Summary</h2>
