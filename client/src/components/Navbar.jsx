@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/Navbar.module.css";
 import SearchIcon from "../assets/search.svg";
 import cartIcon from "../assets/cart.svg";
@@ -7,6 +7,18 @@ import { useAuth } from "../contexts/AuthContext";
 
 export default function Navbar() {
   const { logout, user } = useAuth();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <nav className={styles.navbar}>
@@ -45,11 +57,41 @@ export default function Navbar() {
           </button>
         </Link>
         {!user ? (
-          <button className={`${styles["nav-btn"]} ${styles["login-btn"]}`}>
-            Login
-          </button>
+          <Link to="/login">
+            <button className={`${styles["nav-btn"]} ${styles["login-btn"]}`}>
+              Login
+            </button>
+          </Link>
         ) : (
-          <button>{user.username}</button>
+          <div className={styles["dropdown-wrapper"]} ref={dropdownRef}>
+            <button
+              className={styles["nav-btn"]}
+              onClick={() => setDropdownOpen((prev) => !prev)}
+            >
+              {user.username} ▾
+            </button>
+
+            {dropdownOpen && (
+              <div className={styles["dropdown-menu"]}>
+                <Link
+                  to="/orders"
+                  className={styles["dropdown-item"]}
+                  onClick={() => setDropdownOpen(false)}
+                >
+                  Orders
+                </Link>
+                <button
+                  className={styles["dropdown-item"]}
+                  onClick={() => {
+                    logout();
+                    setDropdownOpen(false);
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
         )}
       </div>
     </nav>
