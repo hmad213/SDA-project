@@ -64,7 +64,7 @@
   margin-bottom: 20px;
 }
 
-.categoryContainer > button {
+.categoryBtn {
   text-align: left;
   padding: 20px 30px;
   border: none;
@@ -75,19 +75,18 @@
   color: white;
 }
 
-.categoryContainer > button:last-child {
+.categoryBtn:last-child {
   border-bottom: none;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
 
-.categoryContainer > button:first-child {
+.categoryBtn:first-child {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
 
-.selected,
-.categoryContainer > button:hover {
+.selected {
   background-color: #0c92ac;
   color: white;
 }

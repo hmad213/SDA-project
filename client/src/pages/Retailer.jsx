@@ -84,14 +84,12 @@ export default function Retailer() {
                     <tr>
                       <th>Name</th>
                       <th>Status</th>
-                      
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>Packed</td>
                       <td>14</td>
-                      
                     </tr>
                     <tr>
                       <td>In Transit</td>

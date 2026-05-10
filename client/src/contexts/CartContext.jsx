@@ -7,33 +7,43 @@ export function CartProvider({ children }) {
 
   function addToCart(product) {
     setCart((prevCart) => {
-      const exists = prevCart.find((item) => item.product.id === product.id);
+      const exists = prevCart.find(
+        (item) => item.product.product_id === product.product_id,
+      );
 
       if (exists) {
         return prevCart.map((item) =>
-          item.product.id === product.id
+          item.product.product_id === product.product_id
             ? { ...item, quantity: item.quantity + 1 }
             : item,
         );
       } else {
-        return [...prevCart, { product, quantity: 1 }];
+        return [
+          ...prevCart,
+          {
+            product: { ...product, price: Number(product.price) },
+            quantity: 1,
+          },
+        ];
       }
     });
   }
 
   function removeFromCart(product) {
     setCart((prevCart) => {
-      const exists = prevCart.find((item) => item.product.id === product.id);
+      const exists = prevCart.find(
+        (item) => item.product.product_id === product.product_id,
+      );
 
-      if (!exists) {
-        return prevCart;
-      }
+      if (!exists) return prevCart;
 
       if (exists.quantity === 1) {
-        return prevCart.filter((item) => item.product.id !== product.id);
+        return prevCart.filter(
+          (item) => item.product.product_id !== product.product_id,
+        );
       } else {
         return prevCart.map((item) =>
-          item.product.id === product.id
+          item.product.product_id === product.product_id
             ? { ...item, quantity: item.quantity - 1 }
             : item,
         );
@@ -41,21 +51,19 @@ export function CartProvider({ children }) {
     });
   }
 
-  function removeAllFromCart(product) {
-    setCart((prevCart) => {
-      const exists = prevCart.find((item) => item.product.id === product.id);
+  function removeAllFromCart(item) {
+    setCart((prevCart) =>
+      prevCart.filter((c) => c.product.product_id !== item.product.product_id),
+    );
+  }
 
-      if (!exists) {
-        return prevCart;
-      }
-
-      return prevCart.filter((item) => item.product.id !== product.id);
-    });
+  function clearCart() {
+    setCart([]);
   }
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, removeAllFromCart }}
+      value={{ cart, addToCart, removeFromCart, removeAllFromCart, clearCart }}
     >
       {children}
     </CartContext.Provider>

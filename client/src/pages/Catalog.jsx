@@ -26,7 +26,6 @@ export default function Catalog() {
   const [productError, setProductError] = useState(null);
   const [hasMore, setHasMore] = useState(true);
 
-  // helper to update URL params without losing existing ones
   const updateParams = (updates) => {
     const next = new URLSearchParams(searchParams);
     Object.entries(updates).forEach(([key, value]) => {
@@ -114,9 +113,7 @@ export default function Catalog() {
                   <button
                     key={item.category_id}
                     onClick={() => handleCategory(item.category_id)}
-                    className={
-                      selected === item.category_id ? styles.activeCategory : ""
-                    }
+                    className={`${styles.categoryBtn} ${selected === item.category_id ? styles.selected : ""}`}
                   >
                     {item.category_name}
                   </button>

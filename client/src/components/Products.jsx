@@ -6,7 +6,7 @@ export default function Product({ product }) {
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
 
   let foundIndex = cart.findIndex((item) => {
-    return item.product.id == product.id;
+    return item.product.product_id === product.product_id;
   });
 
   function addProduct() {

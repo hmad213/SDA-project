@@ -1,17 +1,64 @@
 const { Router } = require("express");
 const orderRouter = Router();
 const orderController = require("../controllers/orderController");
+const { authenticate } = require("../middleware/authMiddleware");
+const authorizeMiddleware = require("../middleware/authorize");
 
-orderRouter.get("/:index", orderController.getOrdersIndex);
+orderRouter.get(
+  "/customer/:index",
+  authenticate,
+  authorizeMiddleware.authorizeUser("admin"),
+  orderController.getOrdersByCustomer,
+);
 
-// for this use query parameters
-orderRouter.get("/", orderController.getOrdersByCustomer);
+orderRouter.get(
+  "/retailer/:index",
+  authenticate,
+  authorizeMiddleware.authorizeRole("retailer", "admin"),
+  orderController.getOrdersByRetailer,
+);
 
-orderRouter.post("/", orderController.postOrder);
+orderRouter.get(
+  "/product/:index",
+  authenticate,
+  authorizeMiddleware.authorizeRole("retailer", "admin"),
+  orderController.getOrdersByProduct,
+);
 
-orderRouter.put("/:index", orderController.putOrder);
+orderRouter.get(
+  "/",
+  authenticate,
+  authorizeMiddleware.authorizeRole("admin"),
+  orderController.getAllOrders,
+);
 
-orderRouter.delete("/:index", orderController.deleteOrder);
+orderRouter.get(
+  "/:index",
+  authenticate,
+  authorizeMiddleware.authorizeRole("admin"),
+  orderController.getOrdersByIndex,
+);
+
+orderRouter.post(
+  "/",
+  authenticate,
+  authorizeMiddleware.authorizeRole("customer", "admin"),
+  orderController.postOrder,
+);
+
+orderRouter.put(
+  "/:index",
+  authenticate,
+  authorizeMiddleware.authorizeRole("retailer", "admin"),
+  orderController.updateOrder,
+);
+
+orderRouter.delete(
+  "/:index",
+  authenticate,
+  authorizeMiddleware.authorizeUser("admin"),
+  orderController.deleteOrder,
+);
 
 module.exports = {
   orderRouter,

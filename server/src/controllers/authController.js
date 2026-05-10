@@ -16,7 +16,7 @@ const login = async (req, res) => {
   }
 
   const payload = {
-    id: user.id,
+    id: user.user_id,
     username: user.username,
     role: role.role_name,
   };
@@ -95,7 +95,7 @@ const signup = async (req, res) => {
     let roleName = role.role_name;
 
     const payload = {
-      id: result.id,
+      id: result.user_id,
       username: result.username,
       role: roleName,
     };

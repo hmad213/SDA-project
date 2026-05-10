@@ -180,3 +180,39 @@
   transform: translateY(-2px);
   box-shadow: 0 1px 0 1px rgb(0, 255, 225);
 }
+
+.stateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 1rem;
+  text-align: center;
+}
+
+.successTitle {
+  font-size: 2rem;
+  color: #0c92ac;
+}
+
+.successText {
+  font-size: 1rem;
+  color: #666;
+}
+
+.errorTitle {
+  font-size: 2rem;
+  color: #e53e3e;
+}
+
+.errorText {
+  font-size: 1rem;
+  color: #e53e3e;
+}
+
+.stateActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
