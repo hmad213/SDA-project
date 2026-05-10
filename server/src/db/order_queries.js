@@ -58,9 +58,10 @@ async function getOrdersByIndex(index) {
   try {
     const query = `
       SELECT o.order_id, o.customer_id, o.order_date, o.delivery_date,
-             od.product_id, od.quantity, od.price as detail_price
+             od.product_id, od.quantity, od.price, p.product_name
       FROM "orders" o
       LEFT JOIN Order_details od ON o.order_id = od.order_id
+      INNER JOIN products p ON od.product_id = p.product_id
       WHERE o.order_id = $1
     `;
     const { rows } = await pool.query(query, [index]);

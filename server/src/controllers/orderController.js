@@ -22,6 +22,11 @@ const getOrdersByIndex = async (req, res) => {
     if (!result.length) {
       return res.status(404).json({ error: "Order not found" });
     }
+
+    if (req.user.role === "customer" && result[0].customer_id !== req.user.id) {
+      return res.status(403).json({ error: "Forbidden" });
+    }
+
     res.status(200).json({ result });
   } catch (error) {
     console.error(error);
@@ -88,11 +93,9 @@ const postOrder = async (req, res) => {
 
   for (const item of cart) {
     if (!item.product_id || !item.quantity || !item.price) {
-      return res
-        .status(400)
-        .json({
-          error: "Each cart item must have product_id, quantity, and price",
-        });
+      return res.status(400).json({
+        error: "Each cart item must have product_id, quantity, and price",
+      });
     }
     if (
       Number.isNaN(Number(item.product_id)) ||

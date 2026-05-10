@@ -5,10 +5,9 @@ import useProducts from "../hooks/useProducts";
 import useCategory from "../hooks/useCategories";
 import Modal from "../components/Modal";
 
+import RetailersDialog from "../components/RetailerDialog";
 import ProductsDialog from "../components/productsDialog";
 import CategoryDialog from "../components/categoryDialog";
-import { getProducts, deleteProduct } from "../services/productService";
-import { getCategories, deleteCategory } from "../services/categoryService";
 
 import manageProductsImg from "../assets/Manageproducts.png";
 import manageRetailersImg from "../assets/Manageretailers.png";
@@ -39,11 +38,11 @@ export default function Admin() {
     if (user.role !== "admin") {
       navigate("/");
     }
-  });
+  }, [user, navigate]);
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
 
       <div className={Adminstyle["page"]}>
         <main className={Adminstyle["main"]}>
@@ -65,27 +64,24 @@ export default function Admin() {
                   <img src={manageProductsImg} alt="Manage products" />
                 </div>
                 <div className={Adminstyle["body"]}>
-                  <h2>📦 New Products : 5</h2>
-                  <h2>📈 Products Status Overview</h2>
+                  <h2>New Products : 5</h2>
+                  <h2>Products Status Overview</h2>
                 </div>
                 <table className={Adminstyle["Table"]}>
                   <thead>
                     <tr>
                       <th>Name</th>
                       <th>Status</th>
-                      <th>View</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>Activated</td>
                       <td>14</td>
-                      <td>❌</td>
                     </tr>
                     <tr>
                       <td>Pending</td>
                       <td>0</td>
-                      <td>✔️</td>
                     </tr>
                   </tbody>
                 </table>
@@ -110,35 +106,35 @@ export default function Admin() {
                   <img src={manageRetailersImg} alt="Manage Retailers" />
                 </div>
                 <div className={Adminstyle["body"]}>
-                  <h2>ℹ️ Activated :</h2>
-                  <h2>⏳ Pending :</h2>
-                  <h2>🗓️ Recent Registrations</h2>
+                  <h2>Activated :</h2>
+                  <h2>Pending :</h2>
+                  <h2>Recent Registrations</h2>
                 </div>
                 <table className={Adminstyle["Table"]}>
                   <thead>
                     <tr>
                       <th>Name</th>
                       <th>Status</th>
-                      <th>View</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>Activated</td>
                       <td>14</td>
-                      <td>❌</td>
                     </tr>
                     <tr>
                       <td>Pending</td>
                       <td>0</td>
-                      <td>✔️</td>
                     </tr>
                   </tbody>
                 </table>
                 <div className={Adminstyle["Footer"]}>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
+                  <button
+                    className={Adminstyle["button"]}
+                    onClick={() => setActiveModal("retailers")}
+                  >
                     View All Retailers
-                  </Link>
+                  </button>
                   <Link to="/Catalog" className={Adminstyle["button"]}>
                     Approve Requests
                   </Link>
@@ -150,31 +146,10 @@ export default function Admin() {
                   <img src={AdminAccessImg} alt="Admin Access" />
                 </div>
                 <div className={Adminstyle["body"]}>
-                  <h2>👤 Current Admins :</h2>
-                  <h2>⋮☰ Access Levels :</h2>
+                  <h2>Current Admins :</h2>
+                  <h2>Access Levels :</h2>
                   {/* <h2>👥 User Management</h2> */}
                 </div>
-                {/* <table className={Adminstyle["Table"]}>
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Role</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Ali</td>
-                      <td>Admin</td>
-                      <td>✏️ 🗑️</td>
-                    </tr>
-                    <tr>
-                      <td>Abdullah</td>
-                      <td>Admin</td>
-                      <td>✏️ 🗑️</td>
-                    </tr>
-                  </tbody>
-                </table> */}
                 <div className={Adminstyle["Footer"]}>
                   <Link to="/Catalog" className={Adminstyle["button"]}>
                     Invite New Admin
@@ -204,6 +179,11 @@ export default function Admin() {
         isLoading={categoriesLoading}
         error={categoriesError}
         refetch={refetchCategories}
+      />
+
+      <RetailersDialog
+        isOpen={activeModal === "retailers"}
+        onClose={closeModal}
       />
     </>
   );

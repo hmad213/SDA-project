@@ -29,7 +29,7 @@ const login = async (req, res) => {
 
   res.json({
     user: {
-      id: user.id,
+      id: user.user_id,
       username: user.username,
       role: role.role_name,
     },
@@ -107,7 +107,7 @@ const signup = async (req, res) => {
     });
 
     res.status(201).json({
-      user: { id: result.id, username: result.username, role: roleName },
+      user: { id: result.user_id, username: result.username, role: roleName },
       accessToken,
       refreshToken,
     });

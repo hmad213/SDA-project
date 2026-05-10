@@ -4,11 +4,26 @@ const userController = require("../controllers/userController");
 const { authenticate } = require("../middleware/authMiddleware");
 const authorizeMiddleware = require("../middleware/authorize");
 
+// specific routes first
 userRouter.get(
-  "/:index",
+  "/admin",
   authenticate,
-  authorizeMiddleware.authorizeUser("admin"),
-  userController.getUserIndex,
+  authorizeMiddleware.authorizeRole("admin"),
+  userController.getAdmin,
+);
+
+userRouter.get(
+  "/customer",
+  authenticate,
+  authorizeMiddleware.authorizeRole("admin"),
+  userController.getCustomer,
+);
+
+userRouter.get(
+  "/retailer",
+  authenticate,
+  authorizeMiddleware.authorizeRole("admin"),
+  userController.getRetailer,
 );
 
 userRouter.get(
@@ -16,6 +31,14 @@ userRouter.get(
   authenticate,
   authorizeMiddleware.authorizeRole("admin"),
   userController.getUsers,
+);
+
+// dynamic routes last
+userRouter.get(
+  "/:index",
+  authenticate,
+  authorizeMiddleware.authorizeUser("admin"),
+  userController.getUserIndex,
 );
 
 userRouter.put(
@@ -30,27 +53,6 @@ userRouter.delete(
   authenticate,
   authorizeMiddleware.authorizeUser("admin"),
   userController.deleteUser,
-);
-
-userRouter.get(
-  "/admin",
-  authenticate,
-  authorizeMiddleware.authorizeUser("admin"),
-  userController.getAdmin,
-);
-
-userRouter.get(
-  "/User",
-  authenticate,
-  authorizeMiddleware.authorizeUser("admin"),
-  userController.getCustomer,
-);
-
-userRouter.get(
-  "/retailer",
-  authenticate,
-  authorizeMiddleware.authorizeUser("admin"),
-  userController.getRetailer,
 );
 
 module.exports = {

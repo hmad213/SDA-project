@@ -20,7 +20,7 @@ export default function Retailer() {
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
 
       <div className={Adminstyle["page"]}>
         <main className={Adminstyle["main"]}>
@@ -42,27 +42,24 @@ export default function Retailer() {
                   <img src={manageProductsImg} alt="Manage products" />
                 </div>
                 <div className={Adminstyle["body"]}>
-                  <h2>📦 New Products : 5</h2>
-                  <h2>📈 Products Status Overview</h2>
+                  <h2>New Products : 5</h2>
+                  <h2>Products Status Overview</h2>
                 </div>
                 <table className={Adminstyle["Table"]}>
                   <thead>
                     <tr>
                       <th>Name</th>
                       <th>Status</th>
-                      <th>View</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>Activated</td>
                       <td>14</td>
-                      <td>❌</td>
                     </tr>
                     <tr>
                       <td>Pending</td>
                       <td>0</td>
-                      <td>✔️</td>
                     </tr>
                   </tbody>
                 </table>
@@ -81,9 +78,9 @@ export default function Retailer() {
                   <img src={manageRetailersImg} alt="Manage Retailers" />
                 </div>
                 <div className={Adminstyle["body"]}>
-                  <h2>ℹ️ Activated :</h2>
-                  <h2>⏳ Pending :</h2>
-                  <h2>🗓️ Recent Registrations</h2>
+                  <h2>Activated :</h2>
+                  <h2>Pending :</h2>
+                  <h2>Recent Registrations</h2>
                 </div>
                 <table className={Adminstyle["Table"]}>
                   <thead>

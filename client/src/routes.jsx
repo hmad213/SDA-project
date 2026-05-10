@@ -8,6 +8,7 @@ import Search from "./pages/Search";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Orders from "./pages/Orders";
+import ProductIndex from "./pages/ProductIndex";
 
 const routes = [
   {
@@ -53,6 +54,11 @@ const routes = [
   {
     path: "/orders",
     element: <Orders />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/product/:index",
+    element: <ProductIndex />,
     errorElement: <ErrorPage />,
   },
 ];

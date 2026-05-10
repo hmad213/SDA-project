@@ -1,24 +1,31 @@
 import { CartContext } from "../contexts/CartContext";
 import styles from "../styles/products.module.css";
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Product({ product }) {
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   let foundIndex = cart.findIndex((item) => {
     return item.product.product_id === product.product_id;
   });
 
-  function addProduct() {
+  function addProduct(e) {
+    e.stopPropagation(); // ← prevents click from bubbling to the card
     addToCart(product);
   }
 
-  function removeProduct() {
+  function removeProduct(e) {
+    e.stopPropagation(); // ← same here
     removeFromCart(product);
   }
 
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      onClick={() => navigate(`/product/${product.product_id}`)}
+    >
       <div className={styles.imgContainer}>
         <img src={product.image_url} alt="" />
       </div>
@@ -38,13 +45,11 @@ export default function Product({ product }) {
             Add
           </button>
         ) : (
-          <>
-            <div className={styles.buttons}>
-              <button onClick={addProduct}>+</button>
-              <input type="text" value={cart[foundIndex].quantity} disabled />
-              <button onClick={removeProduct}>-</button>
-            </div>
-          </>
+          <div className={styles.buttons}>
+            <button onClick={addProduct}>+</button>
+            <input type="text" value={cart[foundIndex].quantity} disabled />
+            <button onClick={removeProduct}>-</button>
+          </div>
         )}
       </div>
     </div>

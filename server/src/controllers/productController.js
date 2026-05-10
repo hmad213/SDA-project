@@ -40,7 +40,7 @@ const getProduct = async (req, res) => {
 
 const postProduct = async (req, res) => {
   const fields = [
-    "name",
+    "product_name",
     "price",
     "description",
     "rating",
@@ -59,7 +59,7 @@ const postProduct = async (req, res) => {
   }
 
   const {
-    name,
+    product_name,
     price,
     description,
     rating,
@@ -90,7 +90,7 @@ const postProduct = async (req, res) => {
 
   try {
     const result = await productQueries.insertProduct({
-      name,
+      product_name,
       price,
       description,
       rating,
@@ -108,7 +108,7 @@ const postProduct = async (req, res) => {
 const putProduct = async (req, res) => {
   const index = Number(req.params.index);
   const fields = [
-    "name",
+    "product_name",
     "price",
     "description",
     "rating",
@@ -143,6 +143,7 @@ const putProduct = async (req, res) => {
     return res.status(400).json({ error: "Category_id must be a number" });
   }
 
+  console.log(inputObj);
   try {
     const result = await productQueries.updateProduct(index, inputObj);
     res.status(200).json({ result });
