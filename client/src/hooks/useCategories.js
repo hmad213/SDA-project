@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
 import { getCategories } from "../services/categoryService";
 
-const useCategories = (params) => {
+const useCategories = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchCategories = async () => {
+    console.log("fetchCategories called");
     setLoading(true);
     try {
-      const { data } = await getCategories(params);
-      setCategories(data.result || data || []); 
+      const response = await getCategories();
+      console.log("response:", response);
+      setCategories(response.data.rows || []);
     } catch (err) {
-      setError(err.response?.data?.error || "Failed to fetch categories");
+      console.log("Full error:", err);
+      setError("Failed to fetch categories");
     } finally {
       setLoading(false);
     }

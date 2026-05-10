@@ -18,7 +18,7 @@ export default function CategoryDialog({ isOpen, onClose, categories, isLoading,
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Manage Categories">
       {isLoading ? (
-        <p>Loading categories...</p>
+        <p>Loading categories</p>
       ) : error ? (
         <p style={{ color: "red" }}>{error}</p>
       ) : (
@@ -30,7 +30,7 @@ export default function CategoryDialog({ isOpen, onClose, categories, isLoading,
                 <span>{category.category_name || "Unnamed Category"}</span>
                 <div>
                   <button style={{ marginRight: "10px" }}>Edit</button>
-                  <button onClick={() => handleDeleteCategory(category._id || category.id)} style={{ color: "red" }}>Delete</button>
+                  <button onClick={() => handleDeleteCategory(category.category_id || category.id)} style={{ color: "red" }}>Delete</button>
                 </div>
               </li>
             ))}
