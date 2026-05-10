@@ -1,22 +1,58 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Adminstyle from "../styles/Retailer.module.css";
 
 import manageProductsImg from "../assets/Manageproducts.png";
 import manageRetailersImg from "../assets/Vieworders.png";
-import AdminAccessImg from "../assets/AdminAccess.png";
 import { useAuth } from "../contexts/AuthContext";
 import Navbar from "../components/Navbar";
+import ProductsDialog from "../components/productsDialog";
+import OrdersDialog from "../components/OrdersDialog";
+import { getProductsByRetailer } from "../services/productService";
 
 export default function Retailer() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [activeModal, setActiveModal] = useState(null);
+  const closeModal = () => setActiveModal(null);
+
+  const [products, setProducts] = useState([]);
+  const [productsLoading, setProductsLoading] = useState(true);
+  const [productsError, setProductsError] = useState(null);
 
   useEffect(() => {
     if (user.role !== "admin" && user.role !== "retailer") {
       navigate("/");
     }
   });
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data } = await getProductsByRetailer(user.id);
+        setProducts(data.result);
+      } catch (err) {
+        setProductsError(
+          err.response?.data?.error || "Failed to fetch products",
+        );
+      } finally {
+        setProductsLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const refetchProducts = async () => {
+    setProductsLoading(true);
+    try {
+      const { data } = await getProductsByRetailer(user.id);
+      setProducts(data.result);
+    } catch (err) {
+      setProductsError(err.response?.data?.error || "Failed to fetch products");
+    } finally {
+      setProductsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -64,12 +100,12 @@ export default function Retailer() {
                   </tbody>
                 </table>
                 <div className={Adminstyle["Footer"]}>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
-                    Add new Products
-                  </Link>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
-                    Inventory Log
-                  </Link>
+                  <button
+                    className={Adminstyle["button"]}
+                    onClick={() => setActiveModal("products")}
+                  >
+                    Manage Inventory
+                  </button>
                 </div>
               </div>
 
@@ -105,18 +141,29 @@ export default function Retailer() {
                   </tbody>
                 </table>
                 <div className={Adminstyle["Footer"]}>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
+                  <button
+                    className={Adminstyle["button"]}
+                    onClick={() => setActiveModal("orders")}
+                  >
                     View All Orders
-                  </Link>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
-                    View Returns
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </main>
       </div>
+
+      <ProductsDialog
+        isOpen={activeModal === "products"}
+        onClose={closeModal}
+        products={products}
+        isLoading={productsLoading}
+        error={productsError}
+        refetch={refetchProducts}
+      />
+
+      <OrdersDialog isOpen={activeModal === "orders"} onClose={closeModal} />
     </>
   );
 }

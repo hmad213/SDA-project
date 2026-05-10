@@ -4,6 +4,7 @@ import SearchIcon from "../assets/search.svg";
 import cartIcon from "../assets/cart.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import { submitRequest } from "../services/requestService";
 
 export default function Navbar() {
   const { logout, user } = useAuth();
@@ -26,6 +27,15 @@ export default function Navbar() {
     e.preventDefault();
     if (!query.trim()) return;
     navigate(`/catalog?search=${encodeURIComponent(query.trim())}`);
+  };
+
+  const handleApplyRetailer = async () => {
+    try {
+      await submitRequest();
+      alert("Your request has been submitted successfully!");
+    } catch (err) {
+      console.error(err.response?.data?.error || "Failed to submit request");
+    }
   };
 
   return (
@@ -118,6 +128,16 @@ export default function Navbar() {
                   >
                     Admin Page
                   </Link>
+                ) : (
+                  <></>
+                )}
+                {user.role === "customer" ? (
+                  <button
+                    className={styles["dropdown-item"]}
+                    onClick={handleApplyRetailer}
+                  >
+                    Apply for Retailer
+                  </button>
                 ) : (
                   <></>
                 )}

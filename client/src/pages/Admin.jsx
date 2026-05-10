@@ -5,6 +5,7 @@ import useProducts from "../hooks/useProducts";
 import useCategory from "../hooks/useCategories";
 import Modal from "../components/Modal";
 
+import RequestsDialog from "../components/RequestsDialog";
 import RetailersDialog from "../components/RetailerDialog";
 import ProductsDialog from "../components/productsDialog";
 import CategoryDialog from "../components/categoryDialog";
@@ -135,9 +136,12 @@ export default function Admin() {
                   >
                     View All Retailers
                   </button>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
+                  <button
+                    className={Adminstyle["button"]}
+                    onClick={() => setActiveModal("requests")}
+                  >
                     Approve Requests
-                  </Link>
+                  </button>
                 </div>
               </div>
 
@@ -183,6 +187,10 @@ export default function Admin() {
 
       <RetailersDialog
         isOpen={activeModal === "retailers"}
+        onClose={closeModal}
+      />
+      <RequestsDialog
+        isOpen={activeModal === "requests"}
         onClose={closeModal}
       />
     </>

@@ -7,6 +7,7 @@ const { orderRouter } = require("./routes/orderRouter");
 const { categoryRouter } = require("./routes/categoryRouter");
 const { userRouter } = require("./routes/userRouter");
 const { authRouter } = require("./routes/authRouter");
+const { requestRouter } = require("./routes/retailerRequestsRouter");
 
 const app = express();
 const PORT = 3000;
@@ -21,6 +22,7 @@ app.use(
   }),
 );
 
+app.use("/request", requestRouter);
 app.use("/", indexRouter);
 app.use("/product", productRouter);
 app.use("/order", orderRouter);

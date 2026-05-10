@@ -4,7 +4,13 @@ const productController = require("../controllers/productController");
 const { authenticate } = require("../middleware/authMiddleware");
 const authorizeMiddleware = require("../middleware/authorize");
 
-productRouter.get("/search", productController.getProductSearch); // ← moved up
+productRouter.get("/search", productController.getProductSearch);
+productRouter.get(
+  "/retailer/:index",
+  authenticate,
+  authorizeMiddleware.authorizeRole("retailer", "admin"),
+  productController.getProductsByRetailer,
+);
 productRouter.get("/", productController.getProduct);
 productRouter.get("/:index", productController.getProductIndex);
 

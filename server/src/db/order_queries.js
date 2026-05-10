@@ -11,7 +11,7 @@ async function getOrdersByCustomer(index) {
 async function getOrdersByRetailer(retailer_id) {
   const { rows } = await pool.query(
     `SELECT o.order_id, o.customer_id, o.order_date, o.delivery_date,
-            od.product_id, od.quantity, od.price
+            od.product_id, od.quantity, od.price, p.product_name
      FROM orders o
      JOIN order_details od ON o.order_id = od.order_id
      JOIN products p ON od.product_id = p.product_id

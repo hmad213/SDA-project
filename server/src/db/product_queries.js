@@ -115,6 +115,14 @@ async function deleteProduct(index) {
   return rowCount > 0;
 }
 
+async function getProductsByRetailer(retailer_id) {
+  const { rows } = await pool.query(
+    `SELECT * FROM Products WHERE retailer_id = $1`,
+    [retailer_id],
+  );
+  return rows;
+}
+
 module.exports = {
   getProducts,
   insertProduct,
@@ -122,4 +130,5 @@ module.exports = {
   updateProduct,
   searchProduct,
   deleteProduct,
+  getProductsByRetailer,
 };

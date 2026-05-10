@@ -197,6 +197,22 @@ const getProductSearch = async (req, res) => {
   }
 };
 
+const getProductsByRetailer = async (req, res) => {
+  const index = Number(req.params.index);
+
+  if (Number.isNaN(index)) {
+    return res.status(400).json({ error: "Index must be a number" });
+  }
+
+  try {
+    const result = await productQueries.getProductsByRetailer(index);
+    res.status(200).json({ result });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to fetch products" });
+  }
+};
+
 module.exports = {
   getProductIndex,
   getProduct,
@@ -204,4 +220,5 @@ module.exports = {
   putProduct,
   deleteProduct,
   getProductSearch,
+  getProductsByRetailer,
 };
