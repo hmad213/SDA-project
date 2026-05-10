@@ -1,31 +1,31 @@
-.orderMain{
-    padding: 70px 50px;
+.orderMain {
+  padding: 70px 50px;
 }
 
-.orderMain h3{
-    min-width: 200px;
-    background-color: #0c92ac;
-    text-align: center;
-    color: white;
-    border-radius: 100px;
-    padding: 8px 0px;
+.orderMain h3 {
+  min-width: 200px;
+  background-color: #0c92ac;
+  text-align: center;
+  color: white;
+  border-radius: 100px;
+  padding: 8px 0px;
 }
 
-.orderMain h2{
-    font-weight: 400;
-    font-size: 28px;
-    margin-bottom: 10px;
+.orderMain h2 {
+  font-weight: 400;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
-.orderMain span{
-    flex: 1;
+.orderMain span {
+  flex: 1;
 }
 
-.orderContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: 20px;
+.orderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 20px;
 }
 
 .order {
@@ -38,18 +38,18 @@
   border-radius: 20px;
 }
 
-.orderMain button{
-    font-size: 1.2rem;
-    padding: 5px 20px;
-    cursor: pointer;
-    background-color: transparent;
-    border-radius: 100px;
-    border: none;
-    border: 1px solid white;
+.orderMain button {
+  font-size: 1.2rem;
+  padding: 5px 20px;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 100px;
+  border: none;
+  border: 1px solid white;
 }
 
-.orderMain button:hover{
-    border: 1px solid black;
+.orderMain button:hover {
+  border: 1px solid black;
 }
 
 .orderHeader {

@@ -1,34 +1,49 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Adminstyle from "../styles/Admin.module.css";
-import useProducts from "../hooks/useProducts"
+import useProducts from "../hooks/useProducts";
 import useCategory from "../hooks/useCategories";
-import Modal from "../components/Modal"
+import Modal from "../components/Modal";
 
-import ProductsDialog from "../components/productsDialog"
-import CategoryDialog from "../components/categoryDialog"
-import { getProducts, deleteProduct } from "../services/productService"; 
+import ProductsDialog from "../components/productsDialog";
+import CategoryDialog from "../components/categoryDialog";
+import { getProducts, deleteProduct } from "../services/productService";
 import { getCategories, deleteCategory } from "../services/categoryService";
 
 import manageProductsImg from "../assets/Manageproducts.png";
 import manageRetailersImg from "../assets/Manageretailers.png";
 import AdminAccessImg from "../assets/AdminAccess.png";
+import { useAuth } from "../contexts/AuthContext";
+import Navbar from "../components/Navbar";
 
 export default function Admin() {
   const [activeModal, setActiveModal] = useState(null);
   const closeModal = () => setActiveModal(null);
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
-  const { categories, loading: categoriesLoading, error: categoriesError, refetch: refetchCategories } = useCategory();
-  const { products, loading: productsLoading, error: productsError, refetch: refetchProducts } = useProducts();
+  const {
+    categories,
+    loading: categoriesLoading,
+    error: categoriesError,
+    refetch: refetchCategories,
+  } = useCategory();
+  const {
+    products,
+    loading: productsLoading,
+    error: productsError,
+    refetch: refetchProducts,
+  } = useProducts();
+
+  useEffect(() => {
+    if (user.role !== "admin") {
+      navigate("/");
+    }
+  });
 
   return (
     <>
-      <div className={Adminstyle["header"]}>
-        <Link to="/" className={Adminstyle["Arrow"]}>
-          ⬅️ Back to home
-        </Link>
-        <h1>Hammad Mart</h1>
-      </div>
+      <Navbar/>
 
       <div className={Adminstyle["page"]}>
         <main className={Adminstyle["main"]}>
@@ -75,14 +90,14 @@ export default function Admin() {
                   </tbody>
                 </table>
                 <div className={Adminstyle["Footer"]}>
-                  <button 
-                    onClick={() => setActiveModal("products")} 
+                  <button
+                    onClick={() => setActiveModal("products")}
                     className={Adminstyle["button"]}
                   >
                     Manage Products
                   </button>
-                  <button 
-                    onClick={() => setActiveModal("categories")} 
+                  <button
+                    onClick={() => setActiveModal("categories")}
                     className={Adminstyle["button"]}
                   >
                     Manage Categories
@@ -173,9 +188,9 @@ export default function Admin() {
           </div>
         </main>
       </div>
-      <ProductsDialog 
-        isOpen={activeModal === "products"} 
-        onClose={closeModal} 
+      <ProductsDialog
+        isOpen={activeModal === "products"}
+        onClose={closeModal}
         products={products}
         isLoading={productsLoading}
         error={productsError}
@@ -183,8 +198,8 @@ export default function Admin() {
       />
 
       <CategoryDialog
-        isOpen={activeModal === "categories"} 
-        onClose={closeModal} 
+        isOpen={activeModal === "categories"}
+        onClose={closeModal}
         categories={categories}
         isLoading={categoriesLoading}
         error={categoriesError}

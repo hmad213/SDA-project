@@ -99,6 +99,28 @@ export default function Navbar() {
                 >
                   Logout
                 </button>
+                {user.role === "admin" || user.role === "retailer" ? (
+                  <Link
+                    to="/retailer"
+                    className={styles["dropdown-item"]}
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Retailer Page
+                  </Link>
+                ) : (
+                  <></>
+                )}
+                {user.role === "admin" ? (
+                  <Link
+                    to="/admin"
+                    className={styles["dropdown-item"]}
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Admin Page
+                  </Link>
+                ) : (
+                  <></>
+                )}
               </div>
             )}
           </div>

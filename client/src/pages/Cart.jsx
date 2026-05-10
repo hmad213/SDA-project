@@ -44,7 +44,7 @@ export default function Cart() {
       setSuccess(true);
     } catch (err) {
       setError(err.response?.data?.error || "Failed to place order");
-    }finally{
+    } finally {
       setLoading(false);
     }
   };

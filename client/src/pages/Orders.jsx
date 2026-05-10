@@ -56,7 +56,7 @@ export default function Orders() {
     try {
       const { data } = await getOrderByIndex(order_id);
       setOrderDetails((prev) => ({ ...prev, [order_id]: data.result }));
-      console.log(orderDetails)
+      console.log(orderDetails);
     } catch (err) {
       console.error("Failed to fetch order details");
     } finally {
@@ -79,7 +79,6 @@ export default function Orders() {
           ) : (
             orders.map((order) => (
               <div key={order.order_id} className={styles.order}>
-
                 <div className={styles.orderHeader}>
                   <h3>Order #{order.order_id}</h3>
                   <span>Placed on {formatDate(order.order_date)}</span>
@@ -108,23 +107,38 @@ export default function Orders() {
                             <tr key={item.product_id}>
                               <td>
                                 <div className={styles.productCell}>
-                                  <img src={item.image_url} alt={item.product_name} />
+                                  <img
+                                    src={item.image_url}
+                                    alt={item.product_name}
+                                  />
                                   <span>{item.product_name}</span>
                                 </div>
                               </td>
                               <td>{item.quantity}</td>
                               <td>${Number(item.price).toFixed(2)}</td>
-                              <td>${(Number(item.price) * item.quantity).toFixed(2)}</td>
+                              <td>
+                                $
+                                {(Number(item.price) * item.quantity).toFixed(
+                                  2,
+                                )}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
                         <tfoot>
                           <tr>
-                            <td colSpan={3}><strong>Total</strong></td>
+                            <td colSpan={3}>
+                              <strong>Total</strong>
+                            </td>
                             <td>
                               <strong>
-                                ${orderDetails[order.order_id]
-                                  ?.reduce((acc, item) => acc + Number(item.price) * item.quantity, 0)
+                                $
+                                {orderDetails[order.order_id]
+                                  ?.reduce(
+                                    (acc, item) =>
+                                      acc + Number(item.price) * item.quantity,
+                                    0,
+                                  )
                                   .toFixed(2)}
                               </strong>
                             </td>
@@ -134,7 +148,6 @@ export default function Orders() {
                     )}
                   </div>
                 )}
-
               </div>
             ))
           )}

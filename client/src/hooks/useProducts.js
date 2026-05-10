@@ -6,12 +6,11 @@ const useProducts = (params) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
   const fetchProducts = async () => {
     setLoading(true);
     try {
       const { data } = await getProducts(params);
-      setProducts(data.result || []); 
+      setProducts(data.result || []);
     } catch (err) {
       setError(err.response?.data?.error || "Failed to fetch products");
     } finally {

@@ -1,20 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Adminstyle from "../styles/Retailer.module.css";
 
 import manageProductsImg from "../assets/Manageproducts.png";
 import manageRetailersImg from "../assets/Vieworders.png";
 import AdminAccessImg from "../assets/AdminAccess.png";
+import { useAuth } from "../contexts/AuthContext";
+import Navbar from "../components/Navbar";
 
 export default function Retailer() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.role !== "admin" && user.role !== "retailer") {
+      navigate("/");
+    }
+  });
+
   return (
     <>
-      <div className={Adminstyle["header"]}>
-        <Link to="/" className={Adminstyle["Arrow"]}>
-          ⬅️ Back to home
-        </Link>
-        <h1>Hammad Mart</h1>
-      </div>
+      <Navbar/>
 
       <div className={Adminstyle["page"]}>
         <main className={Adminstyle["main"]}>
