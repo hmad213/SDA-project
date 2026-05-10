@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Adminstyle from "../styles/Admin.module.css";
+import useProducts from "../hooks/useProducts"
+import useCategory from "../hooks/useCategory"
+import Modal from "../components/Modal"
+
+import ProductsDialog from "../components/productsDialog"
+import CategoryDialog from "../components/categoryDialog"
+import { getProducts, deleteProduct } from "../services/productService"; 
+import { getCategories, deleteCategory } from "../services/categoryService";
 
 import manageProductsImg from "../assets/Manageproducts.png";
 import manageRetailersImg from "../assets/Manageretailers.png";
 import AdminAccessImg from "../assets/AdminAccess.png";
 
 export default function Admin() {
+  const [activeModal, setActiveModal] = useState(null);
+  const closeModal = () => setActiveModal(null);
+
+  // We keep this here so the Dashboard can display products.length!
+  const { products, loading: productsLoading, error: productsError, refetch: refetchProducts } = useProducts();
+
   return (
     <>
       <div className={Adminstyle["header"]}>
@@ -61,12 +75,18 @@ export default function Admin() {
                   </tbody>
                 </table>
                 <div className={Adminstyle["Footer"]}>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
-                    Add new Products
-                  </Link>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
-                    Inventory Log
-                  </Link>
+                  <button 
+                    onClick={() => setActiveModal("products")} 
+                    className={Adminstyle["button"]}
+                  >
+                    Manage Products
+                  </button>
+                  <button 
+                    onClick={() => setActiveModal("categories")} 
+                    className={Adminstyle["button"]}
+                  >
+                    Manage Categories
+                  </button>
                 </div>
               </div>
 
@@ -153,6 +173,19 @@ export default function Admin() {
           </div>
         </main>
       </div>
+      <ProductsDialog 
+        isOpen={activeModal === "products"} 
+        onClose={closeModal} 
+        products={products}
+        isLoading={productsLoading}
+        error={productsError}
+        refetch={refetchProducts}
+      />
+
+      <CategoryDialog
+        isOpen={activeModal === "categories"} 
+        onClose={closeModal} 
+      />
     </>
   );
 }

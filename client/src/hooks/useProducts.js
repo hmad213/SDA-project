@@ -6,23 +6,26 @@ const useProducts = (params) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // We move the fetch function OUTSIDE the useEffect so we can export it
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const { data } = await getProducts(params);
+      // Added a fallback [] just in case data.result is ever undefined
+      setProducts(data.result || []); 
+    } catch (err) {
+      setError(err.response?.data?.error || "Failed to fetch products");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetch = async () => {
-      setLoading(true);
-      try {
-        const { data } = await getProducts(params);
-        setProducts(data.result);
-      } catch (err) {
-        setError(err.response?.data?.error || "Failed to fetch products");
-      } finally {
-        setLoading(false);
-      }
-    };
+    fetchProducts();
+  }, []); // Still fetches automatically on mount
 
-    fetch();
-  }, []);
-
-  return { products, loading, error };
+  // Notice we are now returning 'refetch' as well
+  return { products, loading, error, refetch: fetchProducts };
 };
 
 export default useProducts;
