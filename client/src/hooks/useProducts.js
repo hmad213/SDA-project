@@ -6,23 +6,24 @@ const useProducts = (params) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetch = async () => {
-      setLoading(true);
-      try {
-        const { data } = await getProducts(params);
-        setProducts(data.result);
-      } catch (err) {
-        setError(err.response?.data?.error || "Failed to fetch products");
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    fetch();
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const { data } = await getProducts(params);
+      setProducts(data.result || []); 
+    } catch (err) {
+      setError(err.response?.data?.error || "Failed to fetch products");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
 
-  return { products, loading, error };
+  return { products, loading, error, refetch: fetchProducts };
 };
 
 export default useProducts;
