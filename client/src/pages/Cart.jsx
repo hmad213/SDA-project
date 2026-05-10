@@ -42,9 +42,10 @@ export default function Cart() {
       await postOrder(formattedCart);
       clearCart();
       setSuccess(true);
-      setLoading(false);
     } catch (err) {
       setError(err.response?.data?.error || "Failed to place order");
+    }finally{
+      setLoading(false);
     }
   };
 

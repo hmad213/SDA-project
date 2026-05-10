@@ -7,6 +7,7 @@ import Retailer from "./pages/Retailer";
 import Search from "./pages/Search";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Orders from "./pages/Orders";
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
   {
     path: "/Signup",
     element: <Signup />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/orders",
+    element: <Orders />,
     errorElement: <ErrorPage />,
   },
 ];
