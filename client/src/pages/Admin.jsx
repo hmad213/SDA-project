@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Adminstyle from "../styles/Admin.module.css";
 import useProducts from "../hooks/useProducts"
-import useCategory from "../hooks/useCategory"
+import useCategory from "../hooks/useCategories";
 import Modal from "../components/Modal"
 
 import ProductsDialog from "../components/productsDialog"
@@ -18,7 +18,7 @@ export default function Admin() {
   const [activeModal, setActiveModal] = useState(null);
   const closeModal = () => setActiveModal(null);
 
-  // We keep this here so the Dashboard can display products.length!
+  const { categories, loading: categoriesLoading, error: categoriesError, refetch: refetchCategories } = useCategory();
   const { products, loading: productsLoading, error: productsError, refetch: refetchProducts } = useProducts();
 
   return (
@@ -185,6 +185,10 @@ export default function Admin() {
       <CategoryDialog
         isOpen={activeModal === "categories"} 
         onClose={closeModal} 
+        categories={categories}
+        isLoading={categoriesLoading}
+        error={categoriesError}
+        refetch={refetchCategories}
       />
     </>
   );
