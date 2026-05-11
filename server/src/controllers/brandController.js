@@ -1,98 +1,82 @@
-const categoryQueries = require("../db/category_queries");
+const brandQueries = require("../db/brand_queries");
 
-const getCategories = async (req, res) => {
+const getBrands = async (req, res) => {
   try {
-    const rows = await categoryQueries.getAllCategories();
+    const rows = await brandQueries.getAllBrands();
     res.status(200).json({ rows });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to fetch categories" });
+    res.status(500).json({ error: "Failed to fetch brands" });
   }
 };
 
-const getCategoryIndex = async (req, res) => {
+const getBrandIndex = async (req, res) => {
   try {
     const { index } = req.params;
-
     if (isNaN(index)) {
       return res.status(400).json({ error: "Index must be a number" });
     }
-
     const numberIndex = Number(index);
-
-    const result = await categoryQueries.getCategory(numberIndex);
+    const result = await brandQueries.getBrand(numberIndex);
     res.status(200).json({ result });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to fetch category" });
+    res.status(500).json({ error: "Failed to fetch brand" });
   }
 };
 
-const postCategory = async (req, res) => {
+const postBrand = async (req, res) => {
   const { name } = req.body;
-
   if (!name) {
     return res.status(400).json({ error: "Name must not be empty" });
   }
-
   try {
-    const result = await categoryQueries.insertCategory({
-      category_name: name,
-    });
+    const result = await brandQueries.insertBrand({ brand_name: name });
     res.status(201).json({ result });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to post category" });
+    res.status(500).json({ error: "Failed to post brand" });
   }
 };
 
-const deleteCategory = async (req, res) => {
+const deleteBrand = async (req, res) => {
   const { index } = req.params;
-
   if (isNaN(index)) {
     return res.status(400).json({ error: "Index must be a number" });
   }
-
-  let numberIndex = Number(index);
-
+  const numberIndex = Number(index);
   try {
-    await categoryQueries.deleteCategory(numberIndex);
+    await brandQueries.deleteBrand(numberIndex);
     res.status(204).send();
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to delete category" });
+    res.status(500).json({ error: "Failed to delete brand" });
   }
 };
 
-const putCategory = async (req, res) => {
+const putBrand = async (req, res) => {
   const { index } = req.params;
   const { name } = req.body;
-
   if (!name) {
     return res.status(400).json({ error: "Name must not be empty" });
   }
-
   if (isNaN(index)) {
     return res.status(400).json({ error: "Index must be a number" });
   }
-
-  let numberIndex = Number(index);
-
+  const numberIndex = Number(index);
   try {
-    const result = await categoryQueries.updateCategory(numberIndex, {
-      category_name: name,
-    });
+    const result = await brandQueries.updateBrand(numberIndex, { brand_name: name });
     res.status(200).json({ result });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to update category" });
+    res.status(500).json({ error: "Failed to update brand" });
   }
 };
 
 module.exports = {
-  getCategories,
-  getCategoryIndex,
-  postCategory,
-  deleteCategory,
-  putCategory,
+  getBrands,
+  getBrandIndex,
+  postBrand,
+  deleteBrand,
+  putBrand,
 };

@@ -2,9 +2,9 @@ const express = require("express");
 const cors = require("cors");
 
 const { indexRouter } = require("./routes/indexRouter");
-const { productRouter } = require("./routes/productRouter");
+const { vehicleRouter } = require("./routes/vehicleRouter");
 const { orderRouter } = require("./routes/orderRouter");
-const { categoryRouter } = require("./routes/categoryRouter");
+const { brandRouter } = require("./routes/brandRouter");
 const { userRouter } = require("./routes/userRouter");
 const { authRouter } = require("./routes/authRouter");
 const { requestRouter } = require("./routes/retailerRequestsRouter");
@@ -24,9 +24,9 @@ app.use(
 
 app.use("/request", requestRouter);
 app.use("/", indexRouter);
-app.use("/product", productRouter);
+app.use("/vehicle",vehicleRouter);
 app.use("/order", orderRouter);
-app.use("/category", categoryRouter);
+app.use("/brand", brandRouter);
 app.use("/user", userRouter);
 app.use("/auth", authRouter);
 

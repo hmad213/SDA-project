@@ -1,40 +1,40 @@
 const { Router } = require("express");
-const productRouter = Router();
-const productController = require("../controllers/productController");
+const vehicleRouter = Router();
+const vehicleController = require("../controllers/vehicleController");
 const { authenticate } = require("../middleware/authMiddleware");
 const authorizeMiddleware = require("../middleware/authorize");
 
-productRouter.get("/search", productController.getProductSearch);
-productRouter.get(
+vehicleRouter.get("/search", vehicleController.getVehicleSearch);
+vehicleRouter.get(
   "/retailer/:index",
   authenticate,
   authorizeMiddleware.authorizeRole("retailer", "admin"),
-  productController.getProductsByRetailer,
+  vehicleController.getVehiclesByRetailer,
 );
-productRouter.get("/", productController.getProduct);
-productRouter.get("/:index", productController.getProductIndex);
+vehicleRouter.get("/", vehicleController.getVehicle);
+vehicleRouter.get("/:index", vehicleController.getVehicleIndex);
 
-productRouter.post(
+vehicleRouter.post(
   "/",
   authenticate,
   authorizeMiddleware.authorizeRole("admin", "retailer"),
-  productController.postProduct,
+  vehicleController.postVehicle,
 );
 
-productRouter.put(
+vehicleRouter.put(
   "/:index",
   authenticate,
   authorizeMiddleware.authorizeRetailer("admin"),
-  productController.putProduct,
+  vehicleController.putVehicle,
 );
 
-productRouter.delete(
+vehicleRouter.delete(
   "/:index",
   authenticate,
   authorizeMiddleware.authorizeRetailer("admin"),
-  productController.deleteProduct,
+  vehicleController.deleteVehicle,
 );
 
 module.exports = {
-  productRouter,
+  vehicleRouter,
 };

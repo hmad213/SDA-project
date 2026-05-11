@@ -1,30 +1,30 @@
 const { Router } = require("express");
-const categoryRouter = Router();
-const categoryController = require("../controllers/categoryController");
+const brandRouter = Router();
+const brandController = require("../controllers/brandController");
 const { authenticate } = require("../middleware/authMiddleware");
 const authorizeMiddleware = require("../middleware/authorize");
 
-categoryRouter.get("/", categoryController.getCategories);
-categoryRouter.get("/:index", categoryController.getCategoryIndex);
-categoryRouter.post(
+brandRouter.get("/", brandController.getBrands);
+brandRouter.get("/:index", brandController.getBrandIndex);
+brandRouter.post(
   "/",
   authenticate,
   authorizeMiddleware.authorizeRole("admin"),
-  categoryController.postCategory,
+  brandController.postBrand,
 );
-categoryRouter.put(
+brandRouter.put(
   "/:index",
   authenticate,
   authorizeMiddleware.authorizeRole("admin"),
-  categoryController.putCategory,
+  brandController.putBrand,
 );
-categoryRouter.delete(
+brandRouter.delete(
   "/:index",
   authenticate,
   authorizeMiddleware.authorizeRole("admin"),
-  categoryController.deleteCategory,
+  brandController.deleteBrand,
 );
 
 module.exports = {
-  categoryRouter,
+  brandRouter,
 };

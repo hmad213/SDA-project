@@ -1,10 +1,10 @@
 import api from "../api/axiosInstance";
 
-export const getProducts = (params) => api.get("/product", { params });
-export const getProduct = (id) => api.get(`/product/${id}`);
+export const getProducts = (params) => api.get("/vehicle", { params });
+export const getProduct = (id) => api.get(`/vehicle/${id}`);
 export const searchProducts = (params) =>
-  api.get("/product/search", { params });
-export const createProduct = (data) => api.post("/product", data);
-export const updateProduct = (id, data) => api.put(`/product/${id}`, data);
-export const deleteProduct = (id) => api.delete(`/product/${id}`);
-export const getProductsByRetailer = (id) => api.get(`/product/retailer/${id}`);
+  api.get("/vehicle/search", { params });
+export const createProduct = (data) => api.post("/vehicle", data);
+export const updateProduct = (id, data) => api.put(`/vehicle/${id}`, data);
+export const deleteProduct = (id) => api.delete(`/vehicle/${id}`);
+export const getProductsByRetailer = (id) => api.get(`/vehicle/retailer/${id}`);
