@@ -9,7 +9,7 @@
 .banner {
   border: 3px solid white;
   width: 85%;
-  height: 400px;
+  height: 500px;
   padding: 20px;
   border-radius: 20px;
   margin-top: 60px;
@@ -28,5 +28,5 @@
 .slider-track img {
   width: 33.333%;
   height: 100%;
-  object-fit: contain;
+  object-fit: fill;
 }
