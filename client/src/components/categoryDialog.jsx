@@ -84,18 +84,18 @@ export default function CategoryDialog({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Manage Categories">
+    <Modal isOpen={isOpen} onClose={onClose} title="Manage Brand">
       {isLoading ? (
         <p>Loading categories...</p>
       ) : error ? (
         <p className={styles.error}>{error}</p>
       ) : formMode ? (
         <form className={styles.form} onSubmit={handleSubmit}>
-          <h3>{formMode === "add" ? "Add New Category" : "Edit Category"}</h3>
+          <h3>{formMode === "add" ? "Add New Brand" : "Edit Brand"}</h3>
           {formError && <p className={styles.error}>{formError}</p>}
 
           <div className={styles.formGroup}>
-            <label>Category Name</label>
+            <label>Brand Name</label>
             <input
               name="category_name"
               value={formData.category_name}
@@ -113,7 +113,7 @@ export default function CategoryDialog({
               {submitting
                 ? "Saving..."
                 : formMode === "add"
-                  ? "Add Category"
+                  ? "Add Brand"
                   : "Save Changes"}
             </button>
             <button
@@ -128,7 +128,7 @@ export default function CategoryDialog({
       ) : (
         <div>
           <button className={styles.addBtn} onClick={handleAdd}>
-            + Add New Category
+            + Add New
           </button>
           <div className={styles.tableWrapper}>
             <table className={styles.table}>
