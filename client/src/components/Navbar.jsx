@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/Navbar.module.css";
 import SearchIcon from "../assets/search.svg";
-import cartIcon from "../assets/cart.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { submitRequest } from "../services/requestService";
@@ -41,10 +40,9 @@ export default function Navbar() {
   return (
     <nav className={styles.navbar}>
       <Link to="/" className={styles.logo}>
-        HammadMart
+        Al Abid Motors
       </Link>
 
-      {/*SearchBar*/}
       <form className={styles["search-container"]} onSubmit={handleSearch}>
         <div className={styles["search-box"]}>
           <input
@@ -56,25 +54,14 @@ export default function Navbar() {
           />
           <div className={styles.divider}></div>
           <button type="submit" className={styles["search-icon-btn"]}>
-            <img
-              src={SearchIcon}
-              alt="Search"
-              className={styles["search-svg"]}
-            />
+            <img src={SearchIcon} alt="Search" className={styles["search-svg"]} />
           </button>
         </div>
       </form>
 
-      {/*buttons*/}
       <div className={styles["action-buttons"]}>
         <Link className={styles.link} to="/catalog">
           <button className={styles["nav-btn"]}>Catalog</button>
-        </Link>
-        <Link to="/cart" className={styles.link}>
-          <button className={`${styles["nav-btn"]} ${styles["cart-btn"]}`}>
-            Cart
-            <img src={cartIcon} alt="" className={styles.cartSVG} />
-          </button>
         </Link>
         {!user ? (
           <Link to="/login">
@@ -109,7 +96,7 @@ export default function Navbar() {
                 >
                   Logout
                 </button>
-                {user.role === "admin" || user.role === "retailer" ? (
+                {(user.role === "admin" || user.role === "retailer") && (
                   <Link
                     to="/retailer"
                     className={styles["dropdown-item"]}
@@ -117,10 +104,8 @@ export default function Navbar() {
                   >
                     Retailer Page
                   </Link>
-                ) : (
-                  <></>
                 )}
-                {user.role === "admin" ? (
+                {user.role === "admin" && (
                   <Link
                     to="/admin"
                     className={styles["dropdown-item"]}
@@ -128,18 +113,14 @@ export default function Navbar() {
                   >
                     Admin Page
                   </Link>
-                ) : (
-                  <></>
                 )}
-                {user.role === "customer" ? (
+                {user.role === "customer" && (
                   <button
                     className={styles["dropdown-item"]}
                     onClick={handleApplyRetailer}
                   >
                     Apply for Retailer
                   </button>
-                ) : (
-                  <></>
                 )}
               </div>
             )}
