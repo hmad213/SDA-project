@@ -16,6 +16,9 @@ import AdminAccessImg from "../assets/AdminAccess.png";
 import { useAuth } from "../contexts/AuthContext";
 import Navbar from "../components/Navbar";
 
+import InviteAdminDialog from "../components/InviteAdminDialog";
+import EditPermissionsDialog from "../components/EditPermissionsDialog";
+
 export default function Admin() {
   const [activeModal, setActiveModal] = useState(null);
   const closeModal = () => setActiveModal(null);
@@ -154,13 +157,20 @@ export default function Admin() {
                   <h2>Access Levels :</h2>
                   {/* <h2>👥 User Management</h2> */}
                 </div>
+
                 <div className={Adminstyle["Footer"]}>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
+                  <button
+                    className={Adminstyle["button"]}
+                    onClick={() => setActiveModal("inviteAdmin")}
+                  >
                     Invite New Admin
-                  </Link>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
+                  </button>
+                  <button
+                    className={Adminstyle["button"]}
+                    onClick={() => setActiveModal("editPermissions")}
+                  >
                     Edit Permissions
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
@@ -191,6 +201,14 @@ export default function Admin() {
       />
       <RequestsDialog
         isOpen={activeModal === "requests"}
+        onClose={closeModal}
+      />
+      <InviteAdminDialog
+        isOpen={activeModal === "inviteAdmin"}
+        onClose={closeModal}
+      />
+      <EditPermissionsDialog
+        isOpen={activeModal === "editPermissions"}
         onClose={closeModal}
       />
     </>

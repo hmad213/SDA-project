@@ -7,3 +7,4 @@ export const deleteUser = (id) => api.delete(`/user/${id}`);
 export const getAdmins = () => api.get("/user/admin");
 export const getCustomers = () => api.get("/user/customer");
 export const getRetailers = () => api.get("/user/retailer");
+export const createUser = (data) => api.post("/user", data);

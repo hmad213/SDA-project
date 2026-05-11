@@ -1,0 +1,241 @@
+/* ── Paste these at the bottom of Retailer.module.css ── */
+
+/* Overlay */
+.dialogOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Box */
+.dialogBox {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 520px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.2s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Header */
+.dialogHeader {
+  background-color: teal;
+  padding: 14px 20px;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dialogHeader h2 {
+  color: white;
+  font-size: 18px;
+  margin: 0;
+}
+
+.dialogClose {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.dialogClose:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Body */
+.dialogBody {
+  padding: 20px;
+}
+
+.dialogDesc {
+  color: #555;
+  font-size: 14px;
+  margin: 0 0 16px 0;
+}
+
+/* Form inside dialog */
+.dialogForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dialogForm label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 4px;
+}
+
+.dialogForm input,
+.dialogForm select {
+  padding: 8px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.dialogForm input:focus,
+.dialogForm select:focus {
+  border-color: teal;
+}
+
+/* Table inside dialog */
+.dialogTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.dialogTable th {
+  background-color: teal;
+  color: white;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.dialogTable td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.dialogTable tr:last-child td {
+  border-bottom: none;
+}
+
+.dialogTable tr:hover td {
+  background-color: #f0fafa;
+}
+
+/* Status badges */
+.badge {
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badgeRestocked {
+  background: #d4edda;
+  color: #155724;
+}
+.badgeSold {
+  background: #fff3cd;
+  color: #856404;
+}
+.badgeRemoved {
+  background: #f8d7da;
+  color: #721c24;
+}
+.badgePacked {
+  background: #cce5ff;
+  color: #004085;
+}
+.badgeInTransit {
+  background: #fff3cd;
+  color: #856404;
+}
+.badgeDelivered {
+  background: #d4edda;
+  color: #155724;
+}
+.badgePending {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.dialogEmpty {
+  text-align: center;
+  padding: 30px;
+  color: #888;
+}
+
+.dialogEmpty span {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Footer buttons */
+.dialogFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dialogCancel {
+  padding: 9px 20px;
+  border: 1.5px solid #ccc;
+  background: white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.2s;
+}
+
+.dialogCancel:hover {
+  border-color: teal;
+  color: teal;
+}
+
+.dialogConfirm {
+  padding: 9px 20px;
+  background: teal;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.dialogConfirm:hover {
+  background: rgb(53, 162, 176);
+  box-shadow: 0 4px 12px rgba(53, 162, 176, 0.4);
+}
