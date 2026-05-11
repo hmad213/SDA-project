@@ -4,6 +4,9 @@
   margin-top: auto;
   width: 100%;
   background-color: #7851a9;
+  margin-top: auto;
+  width: 100%;
+  background-color: #7851a9;
   border-top: 2px solid #c9a0dc;
   padding: 20px 40px;
   box-sizing: border-box;
@@ -50,3 +53,4 @@
   color: rgba(255, 255, 255, 0.3);
   letter-spacing: 1px;
 }
+
