@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap");
+
 .stateContainer {
   display: flex;
   flex-direction: column;
@@ -9,11 +11,13 @@
 }
 
 .errorText {
+  font-family: "Rajdhani";
   color: #e53e3e;
   font-size: 0.95rem;
 }
 
 .retryBtn {
+  font-family: "Rajdhani";
   padding: 8px 20px;
   border: 1px solid #e53e3e;
   border-radius: 6px;
@@ -43,6 +47,7 @@
 }
 
 .container {
+  font-family: "Rajdhani";
   margin-top: 50px;
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -59,12 +64,13 @@
 }
 
 .container hr {
-  border: 2px solid #0c92ac;
+  border: 2px solid #7851A9;
   margin-top: 4px;
   margin-bottom: 20px;
 }
 
 .categoryBtn {
+  font-family: "Rajdhani";
   text-align: left;
   padding: 20px 30px;
   border: none;
@@ -87,7 +93,8 @@
 }
 
 .selected {
-  background-color: #0c92ac;
+  font-family: "Rajdhani";
+  background-color: #7851A9;
   color: white;
 }
 
@@ -98,11 +105,14 @@
 }
 
 .activeCategory {
+  font-family: "Rajdhani";
   background-color: #333;
   color: #fff;
 }
 
 .pagination {
+  color: #e0e0e0;
+  font-family: "Rajdhani";
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,12 +121,14 @@
 }
 
 .pageBtn {
+  font-family: "Rajdhani";
   padding: 8px 16px;
   border: 1px solid #e0e0e0;
   border-radius: 6px;
   background: none;
   cursor: pointer;
   font-size: 0.9rem;
+  color: #e0e0e0;
 }
 
 .pageBtn:disabled {
@@ -125,6 +137,8 @@
 }
 
 .pageNumber {
+  font-family: "Rajdhani";
   font-size: 0.9rem;
-  color: #666;
+  color: #ffffff;
+
 }

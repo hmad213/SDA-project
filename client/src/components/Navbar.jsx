@@ -47,7 +47,7 @@ export default function Navbar() {
         <div className={styles["search-box"]}>
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Search vehicles..."
             className={styles["search-input"]}
             value={query}
             onChange={(e) => setQuery(e.target.value)}

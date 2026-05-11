@@ -65,9 +65,9 @@ export default function Retailer() {
             <div className={Adminstyle["line"]}></div>
 
             <div className={Adminstyle["Stats"]}>
-              <h2>Total Products : 5</h2>
+              <h2>Total Vehicles : 5</h2>
               <h2>|</h2>
-              <h2>Orders Completed : 18</h2>
+              <h2>Deliveries Completed : 18</h2>
               <h2>|</h2>
               <h2>Orders Pending : 3</h2>
             </div>
@@ -75,11 +75,11 @@ export default function Retailer() {
             <div className={Adminstyle["maindash"]}>
               <div className={Adminstyle["ManageProducts"]}>
                 <div className={Adminstyle["HeaderProducts"]}>
-                  <img src={manageProductsImg} alt="Manage products" />
+                  <h1>Manage Vehicles</h1>
                 </div>
                 <div className={Adminstyle["body"]}>
-                  <h2>New Products : 5</h2>
-                  <h2>Products Status Overview</h2>
+                  <h2>New Vehicles : 5</h2>
+                  <h2>Vehicle Status Overview</h2>
                 </div>
                 <table className={Adminstyle["Table"]}>
                   <thead>
@@ -111,7 +111,7 @@ export default function Retailer() {
 
               <div className={Adminstyle["ManageRetailers"]}>
                 <div className={Adminstyle["HeaderProducts"]}>
-                  <img src={manageRetailersImg} alt="Manage Retailers" />
+                  <h1>View Orders</h1>
                 </div>
                 <div className={Adminstyle["body"]}>
                   <h2>Activated :</h2>
@@ -127,7 +127,7 @@ export default function Retailer() {
                   </thead>
                   <tbody>
                     <tr>
-                      <td>Packed</td>
+                      <td>Processed</td>
                       <td>14</td>
                     </tr>
                     <tr>
@@ -145,7 +145,7 @@ export default function Retailer() {
                     className={Adminstyle["button"]}
                     onClick={() => setActiveModal("orders")}
                   >
-                    View All Orders
+                    View All Deals
                   </button>
                 </div>
               </div>

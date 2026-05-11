@@ -12,7 +12,7 @@ export default function Footer() {
           <Link to="/about" className={styles.link}>About</Link>
           <Link to="/contact" className={styles.link}>Contact</Link>
         </div>
-        <span className={styles.copy}>© 2026 AbidWheels. All rights reserved.</span>
+        <span className={styles.copy}>© 2026 Al Abid Motors. All rights reserved.</span>
       </div>
     </footer>
   );
