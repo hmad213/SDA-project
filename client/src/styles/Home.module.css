@@ -1,25 +1,29 @@
 .page {
   width: 100%;
-  background-color: white;
+  background-color: #0d0d0d;
+  color: #ffffff;
 }
 
 .line {
   width: 100%;
-  border: solid rgb(66, 130, 181);
+  border: solid #7851a9;
   margin-top: 10px;
   margin-bottom: 20px;
 }
 
 .button {
-  font-weight: bolder;
-  color: rgb(53, 162, 176);
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #c9a0dc;
   display: flex;
   padding: 5px;
   text-decoration: none;
 }
 
 .button:hover {
-  color: rgb(44, 133, 145);
+  color: #7851a9;
   cursor: pointer;
 }
 
@@ -31,7 +35,7 @@
 
 .Navigate {
   padding: 0 3%;
-  background-color: white;
+  background-color: #0d0d0d;
 }
 
 .cardContainer {
@@ -55,4 +59,9 @@
 
 .headings > h2 {
   font-size: 2rem;
+  color: #ffffff;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }

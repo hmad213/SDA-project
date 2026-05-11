@@ -1,5 +1,4 @@
 import Admin from "./pages/Admin";
-import Cart from "./pages/Cart";
 import Catalog from "./pages/Catalog";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
@@ -24,11 +23,6 @@ const routes = [
   {
     path: "/admin",
     element: <Admin />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/cart",
-    element: <Cart />,
     errorElement: <ErrorPage />,
   },
   {

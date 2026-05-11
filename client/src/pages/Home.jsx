@@ -10,6 +10,7 @@ import image from "../assets/bannerImg1.png";
 import { useEffect, useState } from "react";
 import { getProducts } from "../services/productService";
 import useProducts from "../hooks/useProducts";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const { products, loading, error } = useProducts({ limit: 4 });
@@ -22,7 +23,7 @@ export default function Home() {
         <Banner />
         <div className={styles["Navigate"]}>
           <div className={styles.headings}>
-            <h2>Featured Items</h2>
+            <h2>Featured</h2>
             <Link to="/Catalog" className={styles["button"]}>
               <h3>View More</h3>
             </Link>
@@ -41,6 +42,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
