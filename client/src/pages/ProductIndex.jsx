@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import Navbar from "../components/Navbar";
 import { getProduct } from "../services/productService";
-import { CartContext } from "../contexts/CartContext";
 import styles from "../styles/ProductIndex.module.css";
 
 export default function ProductPage() {
@@ -10,11 +9,7 @@ export default function ProductPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { cart, addToCart, removeFromCart } = useContext(CartContext);
 
-  const cartItem = cart.find(
-    (item) => item.product.product_id === product?.product_id,
-  );
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -67,20 +62,6 @@ export default function ProductPage() {
 
             <hr className={styles.divider} />
 
-            {!cartItem ? (
-              <button
-                className={styles.addBtn}
-                onClick={() => addToCart(product)}
-              >
-                Add to Cart
-              </button>
-            ) : (
-              <div className={styles.quantityControl}>
-                <button onClick={() => removeFromCart(product)}>−</button>
-                <span>{cartItem.quantity}</span>
-                <button onClick={() => addToCart(product)}>+</button>
-              </div>
-            )}
           </div>
         </div>
       </main>
