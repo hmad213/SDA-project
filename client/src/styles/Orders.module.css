@@ -1,10 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap");
+
 .orderMain {
   padding: 70px 50px;
+  font-family: "Rajdhani";
 }
 
 .orderMain h3 {
+  font-family: "Rajdhani";
   min-width: 200px;
-  background-color: #0c92ac;
+  background-color: #7851A9;
   text-align: center;
   color: white;
   border-radius: 100px;
@@ -31,7 +35,7 @@
 .order {
   display: flex;
   flex-wrap: wrap;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
   gap: 20px;
   padding: 20px 30px;
   align-items: center;
@@ -39,6 +43,7 @@
 }
 
 .orderMain button {
+  font-family: "Rajdhani";
   font-size: 1.2rem;
   padding: 5px 20px;
   cursor: pointer;
@@ -46,6 +51,7 @@
   border-radius: 100px;
   border: none;
   border: 1px solid white;
+  color: white;
 }
 
 .orderMain button:hover {
@@ -76,7 +82,7 @@
   text-align: left;
   padding: 8px 12px;
   border-bottom: 2px solid #e0e0e0;
-  color: #444;
+  color: #fffdfd;
 }
 
 .detailTable td {

@@ -1,9 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap");
 
 .footer {
+<<<<<<< HEAD
   margin-top: auto;
   width: 100%;
   background-color: #7851a9;
+=======
+margin-top: auto; 
+  width: 100%;
+  background-color: #7851A9;
+>>>>>>> 865f785e68b95b2b435b958b6445a06831b1f4d1
   border-top: 2px solid #c9a0dc;
   padding: 20px 40px;
   box-sizing: border-box;
@@ -49,4 +55,8 @@
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.3);
   letter-spacing: 1px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 865f785e68b95b2b435b958b6445a06831b1f4d1

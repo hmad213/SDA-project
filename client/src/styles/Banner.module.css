@@ -14,7 +14,11 @@
   overflow: hidden;
   padding: 0;
   background-color: #1a1a1a;
+<<<<<<< HEAD
   border: 2px solid #7851a9;
+=======
+  border: 2px solid #7851A9;
+>>>>>>> 865f785e68b95b2b435b958b6445a06831b1f4d1
   box-shadow: 0 0 30px rgba(120, 81, 169, 0.4);
 }
 

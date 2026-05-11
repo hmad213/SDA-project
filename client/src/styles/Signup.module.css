@@ -1,28 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap");
+
 .wrapper {
   min-height: 89vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
-  font-family: Arial, sans-serif;
+  background-color: #000000;
+  font-family: "Rajdhani";
   padding: 20px 10px;
 }
 
 .card {
-  background-color: #ffffff;
+  background-color: #000000;
   width: 100%;
   max-width: 380px;
   padding: 40px 30px;
   border-radius: 20px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #bababa;
   box-sizing: border-box;
   text-align: center;
 }
 
 .title {
   font-size: 40px;
-  color: #000000;
+  color: #ffffff;
   margin-top: 0;
   margin-bottom: 30px;
   font-weight: normal;
@@ -42,13 +44,13 @@
 
 .label {
   font-size: 13px;
-  color: #555555;
+  color: #999999;
   margin-bottom: 6px;
   margin-left: 10px;
 }
 
 .input {
-  background-color: #e2e2e2;
+  background-color: #cccccc;
   border: 2px solid transparent;
   border-radius: 30px;
   height: 40px;
@@ -60,8 +62,8 @@
 }
 
 .input:focus {
-  border-color: #0c92ac;
-  background-color: #ebebeb;
+  border-color: #7851A9;
+  background-color: #bababa;
 }
 
 .errorText {
@@ -72,12 +74,13 @@
 }
 
 .submitBtn {
-  background-color: #0c92ac;
+  background-color: #7851A9;
   color: #ffffff;
   border: none;
   border-radius: 30px;
   height: 45px;
   font-size: 16px;
+  font-family: "Rajdhani";
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
@@ -87,8 +90,8 @@
 }
 
 .submitBtn:hover {
-  box-shadow: 0 0 2px 2px skyblue;
-  background-color: #085360;
+  box-shadow: 0 0 2px 2px lightslategray;
+  background-color: #472d67;
   transform: translateY(-1px);
 }
 
@@ -98,15 +101,15 @@
 }
 
 .existingUser {
-  color: #0c92ac;
+  color: #7851A9;
 }
 
 .loginLink {
-  color: #0c92ac;
+  color: #7851A9;
   text-decoration: underline;
   font-weight: bold;
 }
 
 .loginLink:hover {
-  color: #0a7a8f;
+  color: #552c88;
 }

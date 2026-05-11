@@ -4,7 +4,11 @@
 .navbar {
   display: flex;
   align-items: center;
+<<<<<<< HEAD
   background: #7851a9;
+=======
+  background: #7851A9;
+>>>>>>> 865f785e68b95b2b435b958b6445a06831b1f4d1
   padding: 0 40px;
   height: 70px;
   box-sizing: border-box;
@@ -45,9 +49,13 @@
   height: 40px;
   width: 100%;
   max-width: 500px;
+<<<<<<< HEAD
   transition:
     border-color 0.2s,
     box-shadow 0.2s;
+=======
+  transition: border-color 0.2s, box-shadow 0.2s;
+>>>>>>> 865f785e68b95b2b435b958b6445a06831b1f4d1
 }
 
 .search-box:focus-within {
@@ -166,12 +174,19 @@
   position: absolute;
   top: calc(100% + 12px);
   right: 0;
+<<<<<<< HEAD
   background: linear-gradient(135deg, #5c3d8a, #7851a9);
   border: 1px solid rgba(201, 160, 220, 0.4);
   border-radius: 4px;
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.4),
     0 0 12px rgba(201, 160, 220, 0.2);
+=======
+  background: linear-gradient(135deg, #5c3d8a, #7851A9);
+  border: 1px solid rgba(201, 160, 220, 0.4);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 12px rgba(201, 160, 220, 0.2);
+>>>>>>> 865f785e68b95b2b435b958b6445a06831b1f4d1
   min-width: 180px;
   z-index: 100;
   display: flex;
@@ -205,4 +220,8 @@
   background-color: rgba(201, 160, 220, 0.15);
   color: #c9a0dc;
   padding-left: 24px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 865f785e68b95b2b435b958b6445a06831b1f4d1
