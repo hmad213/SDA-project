@@ -64,7 +64,7 @@
 }
 
 .container hr {
-  border: 2px solid #7851A9;
+  border: 2px solid #7851a9;
   margin-top: 4px;
   margin-bottom: 20px;
 }
@@ -94,7 +94,7 @@
 
 .selected {
   font-family: "Rajdhani";
-  background-color: #7851A9;
+  background-color: #7851a9;
   color: white;
 }
 
@@ -140,5 +140,4 @@
   font-family: "Rajdhani";
   font-size: 0.9rem;
   color: #ffffff;
-
 }

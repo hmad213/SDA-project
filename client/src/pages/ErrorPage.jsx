@@ -10,9 +10,7 @@ export default function ErrorPage() {
       <div className={styles["error-content"]}>
         <h1 className={styles.heading}>Uhm...</h1>
         <br></br>
-        <p className={styles.subtext}>
-          Looks like an error here
-        </p>
+        <p className={styles.subtext}>Looks like an error here</p>
 
         <p className={styles["error-message"]}>
           <i>{error?.statusText || error?.message || "Unknown Err"}</i>

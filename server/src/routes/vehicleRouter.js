@@ -11,7 +11,7 @@ vehicleRouter.get(
   authorizeMiddleware.authorizeRole("retailer", "admin"),
   vehicleController.getVehiclesByRetailer,
 );
-vehicleRouter.get("/", vehicleController.getVehicle);
+vehicleRouter.get("/", vehicleController.getVehicles);
 vehicleRouter.get("/:index", vehicleController.getVehicleIndex);
 
 vehicleRouter.post(

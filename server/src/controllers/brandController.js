@@ -65,7 +65,9 @@ const putBrand = async (req, res) => {
   }
   const numberIndex = Number(index);
   try {
-    const result = await brandQueries.updateBrand(numberIndex, { brand_name: name });
+    const result = await brandQueries.updateBrand(numberIndex, {
+      brand_name: name,
+    });
     res.status(200).json({ result });
   } catch (error) {
     console.error(error);

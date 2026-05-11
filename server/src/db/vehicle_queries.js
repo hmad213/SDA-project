@@ -43,37 +43,21 @@ async function insertVehicle({
     (type, brand_id, mileage, price, retailer_id, description, image_url)
     VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *`,
-    [
-      type,
-      brand_id,
-      mileage,
-      price,
-      retailer_id,
-      description,
-      image_url,
-    ],
+    [type, brand_id, mileage, price, retailer_id, description, image_url],
   );
 
   return rows[0];
 }
 
 // Case-insensitive search using ILIKE
-async function searchVehicle({
-  search,
-  brand_id,
-  type,
-  limit,
-  offset,
-}) {
+async function searchVehicle({ search, brand_id, type, limit, offset }) {
   let query = "SELECT * FROM vehicle";
   let inputArr = [];
   let conditions = [];
   let count = 1;
 
   if (search) {
-    conditions.push(
-      `(description ILIKE $${count} OR type ILIKE $${count})`,
-    );
+    conditions.push(`(description ILIKE $${count} OR type ILIKE $${count})`);
     inputArr.push(`%${search}%`);
     count++;
   }

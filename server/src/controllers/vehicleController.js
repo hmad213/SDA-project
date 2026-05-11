@@ -59,7 +59,15 @@ const postVehicle = async (req, res) => {
     }
   }
 
-  const { type, brand_id, mileage, price, retailer_id, description, image_url } = req.body;
+  const {
+    type,
+    brand_id,
+    mileage,
+    price,
+    retailer_id,
+    description,
+    image_url,
+  } = req.body;
 
   if (isNaN(brand_id)) {
     return res.status(400).json({ error: "brand_id must be a number" });
@@ -96,7 +104,14 @@ const postVehicle = async (req, res) => {
 
 const putVehicle = async (req, res) => {
   const index = Number(req.params.index);
-  const fields = ["type", "brand_id", "mileage", "price", "description", "image_url"];
+  const fields = [
+    "type",
+    "brand_id",
+    "mileage",
+    "price",
+    "description",
+    "image_url",
+  ];
 
   if (isNaN(index)) {
     return res.status(400).json({ error: "Index must be a number" });
@@ -171,7 +186,9 @@ const getVehicleSearch = async (req, res) => {
     res.status(200).json({ result });
   } catch (error) {
     console.error("DB error:", error.message);
-    res.status(500).json({ error: "Failed to fetch vehicles on search request" });
+    res
+      .status(500)
+      .json({ error: "Failed to fetch vehicles on search request" });
   }
 };
 

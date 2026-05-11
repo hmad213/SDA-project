@@ -10,7 +10,6 @@ export default function ProductPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -61,7 +60,6 @@ export default function ProductPage() {
             <p className={styles.description}>{product.description}</p>
 
             <hr className={styles.divider} />
-
           </div>
         </div>
       </main>

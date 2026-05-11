@@ -24,7 +24,7 @@ app.use(
 
 app.use("/request", requestRouter);
 app.use("/", indexRouter);
-app.use("/vehicle",vehicleRouter);
+app.use("/vehicle", vehicleRouter);
 app.use("/order", orderRouter);
 app.use("/brand", brandRouter);
 app.use("/user", userRouter);

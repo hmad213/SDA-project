@@ -64,7 +64,7 @@
 }
 
 .input:focus {
-  border-color: #7851A9;
+  border-color: #7851a9;
   background-color: #bababa;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .submitBtn {
-  background-color: #7851A9;
+  background-color: #7851a9;
   color: #ffffff;
   border: none;
   border-radius: 30px;
@@ -100,7 +100,7 @@
 .goldfishLink {
   display: inline-block;
   margin-top: 25px;
-  color: #7851A9;
+  color: #7851a9;
   text-decoration: none;
   font-size: 14px;
 }
@@ -115,12 +115,12 @@
 }
 
 .newHere {
-  color: #7851A9;
+  color: #7851a9;
   font-family: "Rajdhani";
 }
 
 .signupLink {
-  color: #7851A9;
+  color: #7851a9;
   text-decoration: underline;
   font-weight: normal;
   font-family: "Rajdhani";

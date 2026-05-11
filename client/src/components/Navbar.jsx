@@ -54,7 +54,11 @@ export default function Navbar() {
           />
           <div className={styles.divider}></div>
           <button type="submit" className={styles["search-icon-btn"]}>
-            <img src={SearchIcon} alt="Search" className={styles["search-svg"]} />
+            <img
+              src={SearchIcon}
+              alt="Search"
+              className={styles["search-svg"]}
+            />
           </button>
         </div>
       </form>

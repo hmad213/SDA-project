@@ -72,11 +72,7 @@ async function getOrdersByRetailer(retailer_id) {
   return rows;
 }
 
-async function insertOrder({
-  customer_id,
-  purchase_date,
-  vehicle_id,
-}) {
+async function insertOrder({ customer_id, purchase_date, vehicle_id }) {
   const { rows } = await pool.query(
     `INSERT INTO orders
     (customer_id, purchase_date, vehicle_id)

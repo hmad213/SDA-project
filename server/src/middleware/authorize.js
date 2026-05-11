@@ -1,4 +1,4 @@
-const productQueries = require("../db/product_queries");
+const vehicleQueries = require("../db/vehicle_queries");
 
 const authorizeRole =
   (...roles) =>
@@ -43,7 +43,7 @@ const authorizeRetailer =
     }
 
     try {
-      const result = await productQueries.getProduct(index);
+      const result = await vehicleQueries.getVehicle(index);
       const retailer_id = result.retailer_id;
       if (Number(retailer_id) !== Number(req.user?.id)) {
         return res.status(403).json({ error: "Forbidden" });
@@ -51,7 +51,7 @@ const authorizeRetailer =
       next();
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Failed to fetch product" });
+      res.status(500).json({ error: "Failed to fetch vehicle" });
     }
   };
 

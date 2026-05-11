@@ -62,7 +62,7 @@
 }
 
 .input:focus {
-  border-color: #7851A9;
+  border-color: #7851a9;
   background-color: #bababa;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .submitBtn {
-  background-color: #7851A9;
+  background-color: #7851a9;
   color: #ffffff;
   border: none;
   border-radius: 30px;
@@ -101,11 +101,11 @@
 }
 
 .existingUser {
-  color: #7851A9;
+  color: #7851a9;
 }
 
 .loginLink {
-  color: #7851A9;
+  color: #7851a9;
   text-decoration: underline;
   font-weight: bold;
 }
