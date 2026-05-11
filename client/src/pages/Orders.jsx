@@ -96,8 +96,7 @@ export default function Orders() {
                       <table className={styles.detailTable}>
                         <thead>
                           <tr>
-                            <th>Product</th>
-                            <th>Quantity</th>
+                            <th>Vehicles</th>
                             <th>Price</th>
                             <th>Subtotal</th>
                           </tr>
@@ -114,7 +113,6 @@ export default function Orders() {
                                   <span>{item.product_name}</span>
                                 </div>
                               </td>
-                              <td>{item.quantity}</td>
                               <td>${Number(item.price).toFixed(2)}</td>
                               <td>
                                 $

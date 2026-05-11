@@ -47,18 +47,14 @@ export default function Navbar() {
         <div className={styles["search-box"]}>
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Search vehicles..."
             className={styles["search-input"]}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
           <div className={styles.divider}></div>
           <button type="submit" className={styles["search-icon-btn"]}>
-            <img
-              src={SearchIcon}
-              alt="Search"
-              className={styles["search-svg"]}
-            />
+            <img src={SearchIcon} alt="Search" className={styles["search-svg"]} />
           </button>
         </div>
       </form>

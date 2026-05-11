@@ -96,13 +96,13 @@ export default function Catalog() {
       <main>
         <div className={styles.container}>
           <div className={styles.categories}>
-            <h2>Categories</h2>
+            <h2>Browse brands</h2>
             <hr />
             <div className={styles.categoryContainer}>
               {categoryLoading ? (
                 <div className={styles.stateContainer}>
                   <div className={styles.spinner} />
-                  <p>Loading categories...</p>
+                  <p>Loading brands...</p>
                 </div>
               ) : categoryError ? (
                 <div className={styles.stateContainer}>
@@ -126,7 +126,7 @@ export default function Catalog() {
             {productLoading ? (
               <div className={styles.stateContainer}>
                 <div className={styles.spinner} />
-                <p>Loading products...</p>
+                <p>Loading vehicles...</p>
               </div>
             ) : productError ? (
               <div className={styles.stateContainer}>
@@ -134,7 +134,7 @@ export default function Catalog() {
               </div>
             ) : products.length === 0 ? (
               <div className={styles.stateContainer}>
-                <p>No products found.</p>
+                <p>No vehicles found.</p>
               </div>
             ) : (
               <div className={styles.productContainer}>

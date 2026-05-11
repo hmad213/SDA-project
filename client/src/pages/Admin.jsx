@@ -52,7 +52,7 @@ export default function Admin() {
             <div className={Adminstyle["line"]}></div>
 
             <div className={Adminstyle["Stats"]}>
-              <h2>Total Products : 5</h2>
+              <h2>Total Vehicles : 5</h2>
               <h2>|</h2>
               <h2>Active Retailers : 18</h2>
               <h2>|</h2>
@@ -62,11 +62,11 @@ export default function Admin() {
             <div className={Adminstyle["maindash"]}>
               <div className={Adminstyle["ManageProducts"]}>
                 <div className={Adminstyle["HeaderProducts"]}>
-                  <img src={manageProductsImg} alt="Manage products" />
+                  <h1>Manage Vehicles</h1>
                 </div>
                 <div className={Adminstyle["body"]}>
-                  <h2>New Products : 5</h2>
-                  <h2>Products Status Overview</h2>
+                  <h2>New Vehicles : 5</h2>
+                  <h2>Vehicle Status Overview</h2>
                 </div>
                 <table className={Adminstyle["Table"]}>
                   <thead>
@@ -104,7 +104,7 @@ export default function Admin() {
 
               <div className={Adminstyle["ManageRetailers"]}>
                 <div className={Adminstyle["HeaderProducts"]}>
-                  <img src={manageRetailersImg} alt="Manage Retailers" />
+                  <h1>Manage Retailers</h1>
                 </div>
                 <div className={Adminstyle["body"]}>
                   <h2>Activated :</h2>
@@ -147,12 +147,11 @@ export default function Admin() {
 
               <div className={Adminstyle["AccessAdmin"]}>
                 <div className={Adminstyle["HeaderProducts"]}>
-                  <img src={AdminAccessImg} alt="Admin Access" />
+                  <h1>Assign Admin Access</h1>
                 </div>
                 <div className={Adminstyle["body"]}>
                   <h2>Current Admins :</h2>
                   <h2>Access Levels :</h2>
-                  {/* <h2>👥 User Management</h2> */}
                 </div>
                 <div className={Adminstyle["Footer"]}>
                   <Link to="/Catalog" className={Adminstyle["button"]}>

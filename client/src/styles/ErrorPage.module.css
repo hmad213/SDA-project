@@ -1,20 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap");
+
 .error-container {
+  font-family: "Rajdhani";
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(45deg, #ffffff 0%, #d5e7ff 100%);
-  font-family: Arial, sans-serif;
+  background-color: rgb(26, 26, 26);
   padding: 20px;
   box-sizing: border-box;
 }
 
 .error-content {
   text-align: center;
-  background-color: #ffffff;
+  background-color: #000000;
   padding: 40px 50px;
   border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(45, 45, 45, 0.08);
   max-width: 500px;
   width: 100%;
   rotate: calc();
@@ -22,14 +24,14 @@
 
 .heading {
   font-size: 48px;
-  color: #08060d;
+  color: #ffffff;
   margin-top: 0;
   margin-bottom: 10px;
 }
 
 .subtext {
   font-size: 18px;
-  color: #6b6375;
+  color: #92899d;
   margin-bottom: 20px;
 }
 
@@ -45,7 +47,7 @@
 
 .home-button {
   display: inline-block;
-  background-color: #0a9ebc;
+  background-color: #7851A9;
   color: #ffffff;
   text-decoration: none;
   font-size: 16px;
@@ -57,7 +59,7 @@
 }
 
 .home-button:hover {
-  background-color: #0a798f;
+  background-color: #552c88;
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(12, 146, 172, 0.3);
+  box-shadow: 0 6px 12px rgba(151, 12, 172, 0.3);
 }

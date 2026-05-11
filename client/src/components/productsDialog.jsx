@@ -102,14 +102,14 @@ export default function ProductsDialog({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Manage Products">
+    <Modal isOpen={isOpen} onClose={onClose} title="Manage Vehicles">
       {isLoading ? (
-        <p>Loading products...</p>
+        <p>Loading vehicles...</p>
       ) : error ? (
         <p className={styles.error}>{error}</p>
       ) : formMode ? (
         <form className={styles.form} onSubmit={handleSubmit}>
-          <h3>{formMode === "add" ? "Add New Product" : "Edit Product"}</h3>
+          <h3>{formMode === "add" ? "Add New vehicle" : "Edit vehicle"}</h3>
           {formError && <p className={styles.error}>{formError}</p>}
 
           <div className={styles.formGrid}>
@@ -146,7 +146,7 @@ export default function ProductsDialog({
               />
             </div>
             <div className={styles.formGroup}>
-              <label>Category ID</label>
+              <label>Brand ID</label>
               <input
                 name="category_id"
                 type="number"
@@ -200,7 +200,7 @@ export default function ProductsDialog({
       ) : (
         <div>
           <button className={styles.addBtn} onClick={handleAdd}>
-            + Add New Product
+            + Add New
           </button>
           <div className={styles.tableWrapper}>
             <table className={styles.table}>

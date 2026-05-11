@@ -8,10 +8,10 @@ export default function ErrorPage() {
   return (
     <div className={styles["error-container"]}>
       <div className={styles["error-content"]}>
-        <h1 className={styles.heading}>Sorry...</h1>
+        <h1 className={styles.heading}>Uhm...</h1>
         <br></br>
         <p className={styles.subtext}>
-          We didn't have the budget for this page
+          Looks like an error here
         </p>
 
         <p className={styles["error-message"]}>
@@ -19,7 +19,7 @@ export default function ErrorPage() {
         </p>
 
         <Link to="/" className={styles["home-button"]}>
-          Take me home
+          Back To Home
         </Link>
       </div>
     </div>
