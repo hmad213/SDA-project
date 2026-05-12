@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import styles from "../styles/Orders.module.css";
-import { getOrdersByCustomer, getOrderByIndex} from "../services/orderService";
+import { getOrdersByCustomer, getOrderByIndex } from "../services/orderService";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const formatDate = (dateStr) => {
   if (!dateStr) return "N/A";
@@ -55,9 +56,12 @@ export default function Orders() {
     setDetailLoading(order_id);
     try {
       const { data } = await getOrderByIndex(order_id);
-        console.log("order detail data:", data);          
-        console.log("data.result:", data.result);
-      setOrderDetails((prev) => ({ ...prev, [order_id]: Array.isArray(data.result) ? data.result : [data.result] }));
+      console.log("order detail data:", data);
+      console.log("data.result:", data.result);
+      setOrderDetails((prev) => ({
+        ...prev,
+        [order_id]: Array.isArray(data.result) ? data.result : [data.result],
+      }));
       console.log(orderDetails);
     } catch (err) {
       console.error("Failed to fetch order details");
@@ -117,11 +121,17 @@ export default function Orders() {
                         </tbody>
                         <tfoot>
                           <tr>
-                            <td><strong>Total</strong></td>
+                            <td>
+                              <strong>Total</strong>
+                            </td>
                             <td>
                               <strong>
-                                ${orderDetails[order.order_id]
-                                  ?.reduce((acc, item) => acc + Number(item.price), 0)
+                                $
+                                {orderDetails[order.order_id]
+                                  ?.reduce(
+                                    (acc, item) => acc + Number(item.price),
+                                    0,
+                                  )
                                   .toFixed(2)}
                               </strong>
                             </td>
@@ -136,6 +146,7 @@ export default function Orders() {
           )}
         </div>
       </main>
+      <Footer />
     </>
   );
 }

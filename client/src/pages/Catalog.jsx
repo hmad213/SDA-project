@@ -5,6 +5,7 @@ import styles from "../styles/Catalog.module.css";
 import Product from "../components/Products";
 import { getCategories } from "../services/categoryService";
 import { getProducts, searchProducts } from "../services/productService";
+import Footer from "../components/Footer";
 
 const LIMIT = 20;
 
@@ -164,6 +165,7 @@ export default function Catalog() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

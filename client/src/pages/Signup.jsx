@@ -4,6 +4,7 @@ import styles from "../styles/Signup.module.css";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../contexts/AuthContext";
 import { signup as signupService } from "../services/authService";
+import Footer from "../components/Footer";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -210,6 +211,7 @@ export default function Signup() {
           </Link>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

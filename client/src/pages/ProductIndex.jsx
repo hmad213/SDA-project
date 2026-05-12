@@ -2,18 +2,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import Navbar from "../components/Navbar";
 import { getProduct } from "../services/productService";
-import { postOrder } from "../services/orderService";  
-import { useAuth } from "../contexts/AuthContext";  
+import { postOrder } from "../services/orderService";
+import { useAuth } from "../contexts/AuthContext";
 import styles from "../styles/ProductIndex.module.css";
+import Footer from "../components/Footer";
 
 export default function ProductPage() {
   const { index } = useParams();
-  const  navigate  = useNavigate();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [ordering, setOrdering] = useState(false); 
+  const [ordering, setOrdering] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
 
   useEffect(() => {
@@ -30,22 +31,22 @@ export default function ProductPage() {
     fetchProduct();
   }, [index]);
 
-  const handleOrder = async () => {   
+  const handleOrder = async () => {
     if (!user) {
       navigate("/login");
       return;
     }
     setOrdering(true);
     try {
-    await postOrder(product.vehicle_id); 
-    setOrderSuccess(true);
-  } catch (err) {
-    console.log("Full error:", err);       
-    console.log("Error response:", err.response?.data);
-    alert(err.response?.data?.error || "Failed to place order");
-  } finally {
-    setOrdering(false);
-  }
+      await postOrder(product.vehicle_id);
+      setOrderSuccess(true);
+    } catch (err) {
+      console.log("Full error:", err);
+      console.log("Error response:", err.response?.data);
+      alert(err.response?.data?.error || "Failed to place order");
+    } finally {
+      setOrdering(false);
+    }
   };
 
   if (loading) return <p>Loading...</p>;
@@ -69,7 +70,7 @@ export default function ProductPage() {
             <h1 className={styles.name}>{product.type}</h1>
 
             <div className={styles.rating}>
-              <span className={styles.ratingNumber}>{product.mileage} km</span> 
+              <span className={styles.ratingNumber}>{product.mileage} km</span>
             </div>
 
             <p className={styles.price}>${Number(product.price).toFixed(2)}</p>
@@ -83,7 +84,10 @@ export default function ProductPage() {
             {orderSuccess ? (
               <div>
                 <p style={{ color: "green" }}>Order placed successfully!</p>
-                <button onClick={() => navigate("/orders")} className={styles.orderBtn}>
+                <button
+                  onClick={() => navigate("/orders")}
+                  className={styles.orderBtn}
+                >
                   View My Orders
                 </button>
               </div>
@@ -96,10 +100,10 @@ export default function ProductPage() {
                 {ordering ? "Placing Order..." : "Place Order"}
               </button>
             )}
-
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

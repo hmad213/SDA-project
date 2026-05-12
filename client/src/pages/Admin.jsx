@@ -3,18 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import Adminstyle from "../styles/Admin.module.css";
 import useProducts from "../hooks/useProducts";
 import useCategory from "../hooks/useCategories";
-import Modal from "../components/Modal";
 
 import RequestsDialog from "../components/RequestsDialog";
 import RetailersDialog from "../components/RetailerDialog";
 import ProductsDialog from "../components/productsDialog";
 import CategoryDialog from "../components/categoryDialog";
 
-import manageProductsImg from "../assets/Manageproducts.png";
-import manageRetailersImg from "../assets/Manageretailers.png";
-import AdminAccessImg from "../assets/AdminAccess.png";
 import { useAuth } from "../contexts/AuthContext";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export default function Admin() {
   const [activeModal, setActiveModal] = useState(null);
@@ -28,6 +25,7 @@ export default function Admin() {
     error: categoriesError,
     refetch: refetchCategories,
   } = useCategory();
+
   const {
     products,
     loading: productsLoading,
@@ -45,127 +43,150 @@ export default function Admin() {
     <>
       <Navbar />
 
-      <div className={Adminstyle["page"]}>
-        <main className={Adminstyle["main"]}>
-          <div className={Adminstyle["Dashboard"]}>
-            <h3>Dashboard</h3>
-            <div className={Adminstyle["line"]}></div>
+      <div className={Adminstyle.page}>
+        <main className={Adminstyle.main}>
+          <div className={Adminstyle.dashHeader}>
+            <h2 className={Adminstyle.dashTitle}>Dashboard</h2>
+            <span className={Adminstyle.adminBadge}>ADMIN</span>
+          </div>
 
-            <div className={Adminstyle["Stats"]}>
-              <h2>Total Vehicles : 5</h2>
-              <h2>|</h2>
-              <h2>Active Retailers : 18</h2>
-              <h2>|</h2>
-              <h2>Pending Approvals : 3</h2>
+          <p className={Adminstyle.sectionLabel}>Overview</p>
+          <div className={Adminstyle.statsGrid}>
+            <div className={Adminstyle.statCard}>
+              <div className={Adminstyle.statLabel}>Vehicles</div>
+              <div className={Adminstyle.statValue}>14</div>
+              <div className={Adminstyle.statSub}>5 new this week</div>
+            </div>
+            <div className={Adminstyle.statCard}>
+              <div className={Adminstyle.statLabel}>Retailers</div>
+              <div className={Adminstyle.statValue}>14</div>
+              <div className={Adminstyle.statSub}>0 pending approval</div>
+            </div>
+            <div className={Adminstyle.statCard}>
+              <div className={Adminstyle.statLabel}>Admins</div>
+              <div className={Adminstyle.statValue}>—</div>
+              <div className={Adminstyle.statSub}>Manage access below</div>
+            </div>
+          </div>
+
+          <div className={Adminstyle.divider} />
+          <p className={Adminstyle.sectionLabel}>Quick actions</p>
+
+          <div className={Adminstyle.cardsGrid}>
+            {/* Vehicles card */}
+            <div className={Adminstyle.actionCard}>
+              <div className={Adminstyle.cardIcon}>
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14l4 4v4a2 2 0 0 1-2 2h-2" />
+                  <circle cx="7" cy="17" r="2" />
+                  <circle cx="17" cy="17" r="2" />
+                </svg>
+              </div>
+              <div className={Adminstyle.cardContent}>
+                <h3 className={Adminstyle.cardTitle}>Vehicles</h3>
+                <p className={Adminstyle.cardDesc}>
+                  Add, edit, or remove vehicle listings and manage brands.
+                </p>
+              </div>
+              <div className={Adminstyle.cardActions}>
+                <button
+                  className={Adminstyle.btnPrimary}
+                  onClick={() => setActiveModal("products")}
+                >
+                  Manage vehicles
+                </button>
+                <button
+                  className={Adminstyle.btnGhost}
+                  onClick={() => setActiveModal("categories")}
+                >
+                  Manage brands
+                </button>
+              </div>
             </div>
 
-            <div className={Adminstyle["maindash"]}>
-              <div className={Adminstyle["ManageProducts"]}>
-                <div className={Adminstyle["HeaderProducts"]}>
-                  <h1>Manage Vehicles</h1>
-                </div>
-                <div className={Adminstyle["body"]}>
-                  <h2>New Vehicles : 5</h2>
-                  <h2>Vehicle Status Overview</h2>
-                </div>
-                <table className={Adminstyle["Table"]}>
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Activated</td>
-                      <td>14</td>
-                    </tr>
-                    <tr>
-                      <td>Pending</td>
-                      <td>0</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div className={Adminstyle["Footer"]}>
-                  <button
-                    onClick={() => setActiveModal("products")}
-                    className={Adminstyle["button"]}
-                  >
-                    Manage Vehicles
-                  </button>
-                  <button
-                    onClick={() => setActiveModal("categories")}
-                    className={Adminstyle["button"]}
-                  >
-                    Manage Brands
-                  </button>
-                </div>
+            {/* Retailers card */}
+            <div className={Adminstyle.actionCard}>
+              <div className={Adminstyle.cardIcon}>
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
               </div>
-
-              <div className={Adminstyle["ManageRetailers"]}>
-                <div className={Adminstyle["HeaderProducts"]}>
-                  <h1>Manage Retailers</h1>
-                </div>
-                <div className={Adminstyle["body"]}>
-                  <h2>Activated :</h2>
-                  <h2>Pending :</h2>
-                  <h2>Recent Registrations</h2>
-                </div>
-                <table className={Adminstyle["Table"]}>
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Activated</td>
-                      <td>14</td>
-                    </tr>
-                    <tr>
-                      <td>Pending</td>
-                      <td>0</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div className={Adminstyle["Footer"]}>
-                  <button
-                    className={Adminstyle["button"]}
-                    onClick={() => setActiveModal("retailers")}
-                  >
-                    View All Retailers
-                  </button>
-                  <button
-                    className={Adminstyle["button"]}
-                    onClick={() => setActiveModal("requests")}
-                  >
-                    Approve Requests
-                  </button>
-                </div>
+              <div className={Adminstyle.cardContent}>
+                <h3 className={Adminstyle.cardTitle}>Retailers</h3>
+                <p className={Adminstyle.cardDesc}>
+                  View all retailers and approve pending registration requests.
+                </p>
               </div>
+              <div className={Adminstyle.cardActions}>
+                <button
+                  className={Adminstyle.btnPrimary}
+                  onClick={() => setActiveModal("retailers")}
+                >
+                  View retailers
+                </button>
+                <button
+                  className={Adminstyle.btnGhost}
+                  onClick={() => setActiveModal("requests")}
+                >
+                  Approve requests
+                </button>
+              </div>
+            </div>
 
-              <div className={Adminstyle["AccessAdmin"]}>
-                <div className={Adminstyle["HeaderProducts"]}>
-                  <h1>Assign Admin Access</h1>
-                </div>
-                <div className={Adminstyle["body"]}>
-                  <h2>Current Admins :</h2>
-                  <h2>Access Levels :</h2>
-                </div>
-                <div className={Adminstyle["Footer"]}>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
-                    Invite New Admin
-                  </Link>
-                  <Link to="/Catalog" className={Adminstyle["button"]}>
-                    Edit Permissions
-                  </Link>
-                </div>
+            {/* Admin access card */}
+            <div className={Adminstyle.actionCard}>
+              <div className={Adminstyle.cardIcon}>
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div className={Adminstyle.cardContent}>
+                <h3 className={Adminstyle.cardTitle}>Admin access</h3>
+                <p className={Adminstyle.cardDesc}>
+                  Invite new admins and configure role permissions.
+                </p>
+              </div>
+              <div className={Adminstyle.cardActions}>
+                <Link to="/Catalog" className={Adminstyle.btnPrimary}>
+                  Invite admin
+                </Link>
+                <Link to="/Catalog" className={Adminstyle.btnGhost}>
+                  Edit permissions
+                </Link>
               </div>
             </div>
           </div>
         </main>
       </div>
+
       <ProductsDialog
         isOpen={activeModal === "products"}
         onClose={closeModal}
@@ -174,7 +195,6 @@ export default function Admin() {
         error={productsError}
         refetch={refetchProducts}
       />
-
       <CategoryDialog
         isOpen={activeModal === "categories"}
         onClose={closeModal}
@@ -183,7 +203,6 @@ export default function Admin() {
         error={categoriesError}
         refetch={refetchCategories}
       />
-
       <RetailersDialog
         isOpen={activeModal === "retailers"}
         onClose={closeModal}
@@ -192,6 +211,8 @@ export default function Admin() {
         isOpen={activeModal === "requests"}
         onClose={closeModal}
       />
+
+      <Footer />
     </>
   );
 }
