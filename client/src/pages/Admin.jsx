@@ -91,13 +91,13 @@ export default function Admin() {
                     onClick={() => setActiveModal("products")}
                     className={Adminstyle["button"]}
                   >
-                    Manage Products
+                    Manage Vehicles
                   </button>
                   <button
                     onClick={() => setActiveModal("categories")}
                     className={Adminstyle["button"]}
                   >
-                    Manage Categories
+                    Manage Brands
                   </button>
                 </div>
               </div>

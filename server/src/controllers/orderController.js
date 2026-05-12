@@ -10,15 +10,18 @@ const getAllOrders = async (req, res) => {
   }
 };
 
-const getOrdersByIndex = async (req, res) => {
+const getOrderByIndex = async (req, res) => {
   const index = Number(req.params.index);
+  console.log("getOrdersByIndex called with index:", index);  // j
+  console.log("req.user:", req.user);                         // j
 
   if (Number.isNaN(index)) {
     return res.status(400).json({ error: "Index must be a number" });
   }
 
   try {
-    const result = await orderQueries.getOrdersByIndex(index);
+    const result = await orderQueries.getOrderById(index);
+    console.log("query result:", result);                    // 👈
     if (!result.length) {
       return res.status(404).json({ error: "Order not found" });
     }
@@ -29,7 +32,7 @@ const getOrdersByIndex = async (req, res) => {
 
     res.status(200).json({ result });
   } catch (error) {
-    console.error(error);
+    console.error("DB error:", error); // 👈
     res.status(500).json({ error: "Failed to fetch order" });
   }
 };
@@ -83,41 +86,26 @@ const getOrdersByProduct = async (req, res) => {
 };
 
 const postOrder = async (req, res) => {
-  console.log("req.user:", req.user);
-  const { cart } = req.body;
+  const { vehicle_id } = req.body;      
   const customer_id = req.user?.id;
 
-  if (!cart || !Array.isArray(cart) || cart.length === 0) {
-    return res.status(400).json({ error: "Cart must not be empty" });
+  if (!customer_id) {
+    return res.status(401).json({ error: "Unauthorized" });
   }
 
-  for (const item of cart) {
-    if (!item.product_id || !item.quantity || !item.price) {
-      return res.status(400).json({
-        error: "Each cart item must have product_id, quantity, and price",
-      });
-    }
-    if (
-      Number.isNaN(Number(item.product_id)) ||
-      Number.isNaN(Number(item.quantity)) ||
-      Number.isNaN(Number(item.price))
-    ) {
-      return res
-        .status(400)
-        .json({ error: "product_id, quantity, and price must be numbers" });
-    }
+  if (!vehicle_id) {
+    return res.status(400).json({ error: "vehicle_id is required" });
   }
 
-  const order_date = new Date().toISOString().split("T")[0];
+  const purchase_date = new Date().toISOString().split("T")[0];
 
   try {
-    const order_id = await orderQueries.insertOrder({
+    const order = await orderQueries.insertOrder({
       customer_id,
-      order_date,
-      delivery_date: null,
-      cart,
+      purchase_date,
+      vehicle_id,
     });
-    res.status(201).json({ order_id });
+    res.status(201).json({ order });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to create order" });
@@ -174,7 +162,7 @@ const deleteOrder = async (req, res) => {
 
 module.exports = {
   getAllOrders,
-  getOrdersByIndex,
+  getOrderByIndex,
   getOrdersByCustomer,
   getOrdersByRetailer,
   getOrdersByProduct,

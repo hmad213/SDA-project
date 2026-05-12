@@ -8,16 +8,16 @@ export default function Product({ product }) {
   return (
     <div
       className={styles.card}
-      onClick={() => navigate(`/product/${product.product_id}`)}
+      onClick={() => navigate(`/product/${product.vehicle_id}`)}
     >
       <div className={styles.imgContainer}>
         <img src={product.image_url} alt="" />
       </div>
       <div className={styles.info}>
-        <h2>{product.product_name}</h2>
+        <h2>{product.type}</h2>
         <span>${product.price}</span>
         <div className={styles.location}>
-          <span>{product.location}</span>
+          <span>{product.mileage} km</span>
         </div>
       </div>
     </div>

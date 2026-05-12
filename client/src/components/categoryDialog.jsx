@@ -46,8 +46,8 @@ export default function CategoryDialog({
   };
 
   const handleEdit = (category) => {
-    setEditingId(category.category_id);
-    setFormData({ category_name: category.category_name });
+    setEditingId(category.brand_id);
+    setFormData({ category_name: category.brand_name });
     setFormMode("edit");
     setFormError(null);
   };
@@ -63,9 +63,9 @@ export default function CategoryDialog({
     setFormError(null);
     try {
       if (formMode === "add") {
-        await createCategory({ name: formData.category_name });
+        await createCategory({ name: formData.brand_name });
       } else {
-        await updateCategory(editingId, { name: formData.category_name });
+        await updateCategory(editingId, { name: formData.brand_name });
       }
       refetch();
       setFormMode(null);
@@ -98,7 +98,7 @@ export default function CategoryDialog({
             <label>Brand Name</label>
             <input
               name="category_name"
-              value={formData.category_name}
+              value={formData.brand_name}
               onChange={handleChange}
               required
             />
@@ -141,8 +141,8 @@ export default function CategoryDialog({
               <tbody>
                 {Array.isArray(categories) && categories.length > 0 ? (
                   categories.map((category) => (
-                    <tr key={category.category_id}>
-                      <td>{category.category_name}</td>
+                    <tr key={category.brand_id}>
+                      <td>{category.brand_name}</td>
                       <td className={styles.actions}>
                         <button
                           className={styles.editBtn}
@@ -153,11 +153,11 @@ export default function CategoryDialog({
                         <button
                           className={styles.deleteBtn}
                           onClick={() =>
-                            handleDeleteCategory(category.category_id)
+                            handleDeleteCategory(category.brand_id)
                           }
-                          disabled={deleting === category.category_id}
+                          disabled={deleting === category.brand_id}
                         >
-                          {deleting === category.category_id
+                          {deleting === category.brand_id
                             ? "Deleting..."
                             : "Delete"}
                         </button>

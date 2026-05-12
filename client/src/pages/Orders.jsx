@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import styles from "../styles/Orders.module.css";
-import { getOrdersByCustomer, getOrderByIndex } from "../services/orderService";
+import { getOrdersByCustomer, getOrderByIndex} from "../services/orderService";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -55,7 +55,9 @@ export default function Orders() {
     setDetailLoading(order_id);
     try {
       const { data } = await getOrderByIndex(order_id);
-      setOrderDetails((prev) => ({ ...prev, [order_id]: data.result }));
+        console.log("order detail data:", data);          
+        console.log("data.result:", data.result);
+      setOrderDetails((prev) => ({ ...prev, [order_id]: Array.isArray(data.result) ? data.result : [data.result] }));
       console.log(orderDetails);
     } catch (err) {
       console.error("Failed to fetch order details");
@@ -96,47 +98,30 @@ export default function Orders() {
                       <table className={styles.detailTable}>
                         <thead>
                           <tr>
-                            <th>Vehicles</th>
+                            <th>Vehicle</th>
                             <th>Price</th>
-                            <th>Subtotal</th>
                           </tr>
                         </thead>
                         <tbody>
                           {orderDetails[order.order_id]?.map((item) => (
-                            <tr key={item.product_id}>
+                            <tr key={item.vehicle_id}>
                               <td>
                                 <div className={styles.productCell}>
-                                  <img
-                                    src={item.image_url}
-                                    alt={item.product_name}
-                                  />
-                                  <span>{item.product_name}</span>
+                                  <img src={item.image_url} alt={item.type} />
+                                  <span>{item.type}</span>
                                 </div>
                               </td>
                               <td>${Number(item.price).toFixed(2)}</td>
-                              <td>
-                                $
-                                {(Number(item.price) * item.quantity).toFixed(
-                                  2,
-                                )}
-                              </td>
                             </tr>
                           ))}
                         </tbody>
                         <tfoot>
                           <tr>
-                            <td colSpan={3}>
-                              <strong>Total</strong>
-                            </td>
+                            <td><strong>Total</strong></td>
                             <td>
                               <strong>
-                                $
-                                {orderDetails[order.order_id]
-                                  ?.reduce(
-                                    (acc, item) =>
-                                      acc + Number(item.price) * item.quantity,
-                                    0,
-                                  )
+                                ${orderDetails[order.order_id]
+                                  ?.reduce((acc, item) => acc + Number(item.price), 0)
                                   .toFixed(2)}
                               </strong>
                             </td>

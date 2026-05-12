@@ -10,7 +10,7 @@ export const getOrdersByRetailer = (id) => api.get(`/order/retailer/${id}`);
 
 export const getOrdersByProduct = (id) => api.get(`/order/product/${id}`);
 
-export const postOrder = (cart) => api.post("/order", { cart });
+export const postOrder = (vehicle_id) => api.post("/order", { vehicle_id });
 
 export const updateOrder = (id, data) => api.put(`/order/${id}`, data);
 
