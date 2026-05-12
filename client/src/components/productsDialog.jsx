@@ -9,11 +9,11 @@ import styles from "../styles/ProductsDialog.module.css";
 import { useAuth } from "../contexts/AuthContext";
 
 const EMPTY_FORM = {
-  product_name: "",
+  type: "",
   price: "",
   description: "",
-  rating: "",
-  category_id: "",
+  milage: "",
+  brand_id: "",
   image_url: "",
 };
 
@@ -56,13 +56,13 @@ export default function ProductsDialog({
   };
 
   const handleEdit = (product) => {
-    setEditingId(product.product_id);
+    setEditingId(product.vehicle_id);
     setFormData({
-      product_name: product.product_name,
+      product_name: product.type,
       price: product.price,
       description: product.description,
-      rating: product.rating,
-      category_id: product.category_id,
+      rating: product.mileage,
+      category_id: product.brand_id,
       retailer_id: product.retailer_id,
       image_url: product.image_url,
     });
@@ -117,7 +117,7 @@ export default function ProductsDialog({
               <label>Name</label>
               <input
                 name="product_name"
-                value={formData.product_name}
+                value={formData.type}
                 onChange={handleChange}
                 required
               />
@@ -140,7 +140,7 @@ export default function ProductsDialog({
                 min="0"
                 max="5"
                 step="0.1"
-                value={formData.rating}
+                value={formData.mileage}
                 onChange={handleChange}
                 required
               />
@@ -150,7 +150,7 @@ export default function ProductsDialog({
               <input
                 name="category_id"
                 type="number"
-                value={formData.category_id}
+                value={formData.brand_id}
                 onChange={handleChange}
                 required
               />
@@ -208,17 +208,17 @@ export default function ProductsDialog({
                 <tr>
                   <th>Name</th>
                   <th>Price</th>
-                  <th>Rating</th>
+                  <th>Mileage</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {Array.isArray(products) && products.length > 0 ? (
                   products.map((product) => (
-                    <tr key={product.product_id}>
-                      <td>{product.product_name}</td>
+                    <tr key={product.vehicle_id}>
+                      <td>{product.type}</td>
                       <td>${Number(product.price).toFixed(2)}</td>
-                      <td>{product.rating}</td>
+                      <td>{product.mileage}</td>
                       <td className={styles.actions}>
                         <button
                           className={styles.editBtn}

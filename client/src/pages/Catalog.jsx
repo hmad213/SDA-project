@@ -111,11 +111,11 @@ export default function Catalog() {
               ) : (
                 categories.map((item) => (
                   <button
-                    key={item.category_id}
-                    onClick={() => handleCategory(item.category_id)}
-                    className={`${styles.categoryBtn} ${selected === item.category_id ? styles.selected : ""}`}
+                    key={item.brand_id}
+                    onClick={() => handleCategory(item.brand_id)}
+                    className={`${styles.categoryBtn} ${selected === item.brand_id ? styles.selected : ""}`}
                   >
-                    {item.category_name}
+                    {item.brand_name}
                   </button>
                 ))
               )}
@@ -139,7 +139,7 @@ export default function Catalog() {
             ) : (
               <div className={styles.productContainer}>
                 {products.map((item) => (
-                  <Product key={item.id} product={item} />
+                  <Product key={item.vehicle_id} product={item} />
                 ))}
               </div>
             )}
