@@ -36,7 +36,7 @@ orderRouter.get(
   "/:index",
   authenticate,
   authorizeMiddleware.authorizeRole("admin", "customer", "retailer"),
-  orderController.getOrdersByIndex,
+  orderController.getOrderByIndex,
 );
 
 orderRouter.post("/", authenticate, orderController.postOrder);

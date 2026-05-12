@@ -242,7 +242,7 @@ export default function ProductsDialog({
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={4}>No products found.</td>
+                    <td colSpan={4}>No vehicles found.</td>
                   </tr>
                 )}
               </tbody>
